@@ -1,0 +1,1 @@
+<p class="text-center">Copyright Gambia Beds - All rights reserved 2017</p>

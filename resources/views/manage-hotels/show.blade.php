@@ -27,7 +27,7 @@
 		<h1>Show hotel</h1>
 		<hr>
 		<ol class="breadcrumb">
-			<li><a href="#">Administrator</a></li>
+			<li><a href="">Administrator</a></li>
 			<li><a href="{{ route('manage-hotels.index') }}">Manage Hotels</a></li>
 			<li class="active">{{ $hotel->hotel_name }}</li>
 		</ol>
@@ -79,7 +79,7 @@
 		<div class="well">
 			<h4>Images</h4>
 			@forelse($hotel->images as $image)
-				<img src="{{ asset('images/hotel-images/' . $image->hotel_image) }}" height="250" width="200" class="img-thumbnail">
+				<img src="{{ asset('images/hotel-images/' . $image->hotel_image) }}" height="300" width="234" class="img-thumbnail">
 			@empty
 			<ul>
 				<li><b>No Images yet! Upload them</b></li>
@@ -89,20 +89,21 @@
 		
 		<div class="well">
 			<h4>Rooms</h4>
-			<ul>
-				<li>Room 1</li>
-				<li>Room 1</li>
-				<li>Room 1</li>
-				<li>Room 1</li>
-				<li>Room 1</li>
-				<li>Room 1</li>
-				<li>Room 1</li>
-				<li>Room 1</li>
-				<li>Room 1</li>
-				<li>Room 1</li>
-				<li>Room 1</li>
-				<li>Room 1</li>
-			</ul>
+			@foreach($hotel->rooms as $room)
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="{{ asset('images/hotel-rooms/' . $room->room_image) }}" alt="rooms">
+						<div class="caption">
+							<h3>{{ $room->room_type }}</h3>
+							<p>Sleeps <b>{{ $room->room_capacity }}</b> people</p>
+							<p>Bed Choice <b>Double Bed</b></p>
+							<p>Starting from <b>${{ $room->room_price }}/night</b></p>
+							<button type="button" class="btn btn-default btn-block" data-toggle="popover" title="Room Facilities" data-placement="top" data-content="{{ $room->room_facilities }}">Room Facilities</button>
+							<p><a href="" class="btn btn-warning btn-block" style="margin-top: 2px;">Book</a></p>
+						</div>
+				</div>
+			</div>
+			@endforeach
 		</div>
 		<hr>
 	</div>
@@ -118,7 +119,7 @@
 			<a href="{{ route('hotel.rating', $hotel->id) }}" class="btn btn-success btn-block">Hotel Rating</a>
 			<a href="{{ route('hotel.facilities', $hotel->id) }}" class="btn btn-success btn-block">Hotel Facilities</a>
 			<a href="{{ route('manage-hotels.upload-images.index', $hotel->id) }}" class="btn btn-success btn-block">Upload Images</a>
-			<a href="" class="btn btn-success btn-block">Hotel Rooms</a>
+			<a href="{{ route('hotel.room.create', $hotel->id) }}" class="btn btn-success btn-block">Hotel Rooms</a>
 			<a href="" class="btn btn-success btn-block">Accommodation Type</a>
 			
 			<a href="" class="btn btn-success btn-block">Rooms Available</a>
@@ -162,6 +163,10 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-6ropsXjsRjCxrDFh31V_esVg6CzgSZc&callback=initMap">
     </script>
     <script>
+	    $(function () {
+		  $('[data-toggle="popover"]').popover()
+		});
+		
       function initMap() {
         var uluru = {lat: 13.442634, lng: -16.722511};
         var map = new google.maps.Map(document.getElementById('map'), {

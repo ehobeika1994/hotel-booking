@@ -30,3 +30,7 @@ Route::post('add-hotel-images/{hotel_id}', ['uses' => 'UploadImagesController@st
 Route::get('manage-hotels/{hotel_id}/hotel-rating', ['uses' => 'ManageHotelsController@addHotelRating', 'as' => 'hotel.rating']);
 Route::post('store-rating/{hotel_id}', ['uses' => 'ManageHotelsController@storeHotelRating', 'as' => 'hotel.rating.storeRating']);
 Route::put('update-rating/{hotel_id}/update/{id}', ['uses' => 'ManageHotelsController@updateHotelRating', 'as' => 'hotel.rating.updateRating']);
+
+//Hotel Room
+Route::get('manage-hotels/{hotel_id}/hotel-rooms', ['uses' => 'RoomsController@create', 'as' => 'hotel.room.create']);
+Route::post('add-room/{hotel_id}', ['uses' => 'RoomsController@store', 'as' => 'hotel.room.store']);

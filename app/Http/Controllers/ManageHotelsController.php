@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 use App\Hotel;
 use App\HotelRating;
-
+use DB;
 use Image;
 use Purifier;
 use Session;
@@ -70,8 +70,15 @@ class ManageHotelsController extends Controller
 			// save image in database
 			$hotel->cover_image = $filename;
 		}
+
+		$hotel->save();		
+		$data = array(
+			'hotel_id' => $hotel->id,
+			'hotel_rating' => $request->hotel_rating
+		);
+		DB::table('hotel_ratings')->insert($data);
 		
-		$hotel->save();
+
 
 		//Redirect message
 		Session::flash('success', 'A new hotel has successfully been added to your system!');

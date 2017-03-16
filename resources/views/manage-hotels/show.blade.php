@@ -66,17 +66,25 @@
 		<div class="well">
 			<h4>Facilities</h4>
 			<ul>
-				@foreach($hotel->facilities as $facility)
+				
+				@forelse($hotel->facilities as $facility)
 				<li><span class="glyphicon glyphicon-chevron-right"> {{ $facility->hotel_facility }}</span></li>
-				@endforeach
+				@empty
+					<li><b>No Facilities available!</b></li>
+				@endforelse
+
 			</ul>
 		</div>
 		
 		<div class="well">
 			<h4>Images</h4>
-			@foreach($hotel->images as $image)
+			@forelse($hotel->images as $image)
 				<img src="{{ asset('images/hotel-images/' . $image->hotel_image) }}" height="250" width="200" class="img-thumbnail">
-			@endforeach
+			@empty
+			<ul>
+				<li><b>No Images yet! Upload them</b></li>
+			</ul>
+			@endforelse
 		</div>
 		
 		<div class="well">

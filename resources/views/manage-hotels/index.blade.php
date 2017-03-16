@@ -28,7 +28,7 @@
 			</thead>
 			
 			<tbody>
-				@foreach($hotels as $hotel)
+				@forelse($hotels as $hotel)
 				<tr>
 					<td>{{ $hotel->hotel_name }}</td>
 					<td>{{ $hotel->hotel_slug }}</td>
@@ -39,7 +39,9 @@
 						<a href="{{ route('manage-hotels.destroy', $hotel->id) }}" class="btn btn-danger">Delete</a>
 					</td>
 				</tr>
-				@endforeach
+				@empty
+					<p><b>NO HOTELS AVAILABLE YET! START UPLOADING NOW!</b></p>
+				@endforelse
 			</tbody>
 		</table>
 	</div>

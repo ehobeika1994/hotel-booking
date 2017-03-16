@@ -39,7 +39,7 @@
         <div class="container">
             <div class="content">
                 <div class="title">Gambia Beds</div>
-				<p><a href="{{ route('manage-hotels.create') }}">Manage Hotels</a></p>
+				<p><a href="{{ route('manage-hotels.index') }}">Manage Hotels</a></p>
             </div>
         </div>
     </body>

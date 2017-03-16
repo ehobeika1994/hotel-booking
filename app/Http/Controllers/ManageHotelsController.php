@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Hotel;
+use App\HotelRating;
 
 use Image;
 use Purifier;
@@ -71,7 +72,7 @@ class ManageHotelsController extends Controller
 		}
 		
 		$hotel->save();
-		
+
 		//Redirect message
 		Session::flash('success', 'A new hotel has successfully been added to your system!');
 		// redirect to another page
@@ -128,5 +129,44 @@ class ManageHotelsController extends Controller
 		
 		Session::flash('success', 'Hotel Deleted!');
 		return redirect()->route('manage-hotels.index');
+    }
+    
+    public function addHotelRating($id)
+    {
+	    $hotel = Hotel::find($id);
+	    
+	    return view('manage-hotels.hotel-rating.index')->withHotel($hotel);
+    }
+    
+    public function storeHotelRating(Request $request, $hotel_id)
+    {
+	    $this->validate($request, array(
+		   'hotel_rating' => 'required' 
+	    ));
+	    
+	    $hotel = Hotel::find($hotel_id);
+	    $rating = new HotelRating;
+	    
+	    $rating->hotel_rating = $request->hotel_rating;
+	    $rating->hotel()->associate($hotel);
+	    $rating->save();
+	    
+	    Session::flash('success', 'Successfully rated!');
+	    return redirect()->route('manage-hotels.show', [$hotel->id]);
+    }
+    
+    public function updateHotelRating(Request $request, $id, $hotel_id)
+    {
+	    $this->validate($request, array(
+		   'hotel_rating' => 'required' 
+	    ));
+		$hotel = Hotel::find($hotel_id);
+	    $rating = HotelRating::find($id);
+	    
+	    $rating->hotel_rating = $request->hotel_rating;
+	    $rating->save();
+	    
+	    Session::flash('success', 'Successfully updated!');
+	    return redirect()->route('manage-hotels.show', [$hotel->id]);
     }
 }

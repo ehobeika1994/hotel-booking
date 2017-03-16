@@ -33,7 +33,33 @@
 		</ol>
 		
 		<img src="{{ asset('images/cover-images/' . $hotel->cover_image) }}" class="" height="400" width="750" alt="hotel-front-image"/>
-		<h1>{{ $hotel->hotel_name }}</h1>
+		<h1>{{ $hotel->hotel_name }} 
+			@if($hotel->ratings->hotel_rating == 1)
+			<span class="glyphicon glyphicon-star"></span>
+			@endif
+			@if($hotel->ratings->hotel_rating == 2)
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			@endif
+			@if($hotel->ratings->hotel_rating == 3)
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			@endif
+			@if($hotel->ratings->hotel_rating == 4)
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			@endif
+			@if($hotel->ratings->hotel_rating == 5)
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			@endif
+		</h1>
 		<p><small>Hotel Address</small></p>
 		<p class="lead">{!! $hotel->hotel_description !!}</p>
 
@@ -81,10 +107,12 @@
 			<a href="{{ route('manage-hotels.index') }}" class="btn btn-warning btn-block">Go Back</a>
 			<a href="{{ route('manage-hotels.destroy', $hotel->slug) }}" class="btn btn-danger btn-block">Delete</a>
 			<hr>
+			<a href="{{ route('hotel.rating', $hotel->id) }}" class="btn btn-success btn-block">Hotel Rating</a>
 			<a href="{{ route('hotel.facilities', $hotel->id) }}" class="btn btn-success btn-block">Hotel Facilities</a>
 			<a href="{{ route('manage-hotels.upload-images.index', $hotel->id) }}" class="btn btn-success btn-block">Upload Images</a>
+			<a href="" class="btn btn-success btn-block">Hotel Rooms</a>
 			<a href="" class="btn btn-success btn-block">Accommodation Type</a>
-			<a href="" class="btn btn-success btn-block">Add Rooms</a>
+			
 			<a href="" class="btn btn-success btn-block">Rooms Available</a>
 			<a href="" class="btn btn-success btn-block">Bookings</a>
 			<a href="" class="btn btn-success btn-block">Hotel Policies</a>

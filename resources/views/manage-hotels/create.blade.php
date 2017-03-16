@@ -41,6 +41,14 @@
 		{{ Form::label('hotel_description', 'Hotel Description:', ['class' => 'form-spacing-top']) }}
 		{{ Form::textarea('hotel_description', null, array('class' => 'form-control')) }}
 		
+		{{ Form::label('hotel_rating_id', 'Hotel Rating', ['class' => 'form-spacing-top']) }}
+			<select class="form-control" name="hotel-rating-id">
+				<option value="1">1</option>
+				<option value="1">2</option>
+				<option value="1">3</option>
+				<option value="1">4</option>
+				<option value="1">5</option>
+			</select>
 		<!--
 		
 		{{ Form::label('hotel-rooms', 'Hotel Rooms:', ['class' => 'form-spacing-top']) }}

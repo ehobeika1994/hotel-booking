@@ -15,4 +15,9 @@ class Hotel extends Model
 	{
     	return $this->hasMany('App\HotelImage');
     }
+    
+    public function ratings()
+    {
+	    return $this->hasOne('App\HotelRating');
+    }
 }

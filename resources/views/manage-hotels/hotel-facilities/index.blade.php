@@ -29,9 +29,12 @@
 		{!! Form::close() !!}
 		<hr>	
 		<ul>
-			@foreach($facilities as $facility)
+			@foreach($hotel->facilities as $facility)
+			
 				<li>{{$facility->hotel_facility}}</li>
+				
 			@endforeach
+			
 		</ul>
 	</div>
 </div>

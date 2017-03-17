@@ -70,7 +70,7 @@
 				@forelse($hotel->facilities as $facility)
 				<li><span class="glyphicon glyphicon-chevron-right"> {{ $facility->hotel_facility }}</span></li>
 				@empty
-					<li><b>No Facilities available!</b></li>
+					<li><b>No Facilities available! Add them!</b></li>
 				@endforelse
 
 			</ul>
@@ -89,7 +89,7 @@
 		
 		<div class="well">
 			<h4>Rooms</h4>
-			@foreach($hotel->rooms as $room)
+			@forelse($hotel->rooms as $room)
 			<div class="col-sm-6 col-md-4">
 				<div class="thumbnail">
 					<img src="{{ asset('images/hotel-rooms/' . $room->room_image) }}" alt="rooms">
@@ -103,7 +103,11 @@
 						</div>
 				</div>
 			</div>
-			@endforeach
+			@empty
+				<ul>
+					<li><b>No Rooms! Add them!</b></li>
+				</ul>
+			@endforelse
 		</div>
 		<hr>
 	</div>
@@ -120,35 +124,45 @@
 			<a href="{{ route('hotel.facilities', $hotel->id) }}" class="btn btn-success btn-block">Hotel Facilities</a>
 			<a href="{{ route('manage-hotels.upload-images.index', $hotel->id) }}" class="btn btn-success btn-block">Upload Images</a>
 			<a href="{{ route('hotel.room.create', $hotel->id) }}" class="btn btn-success btn-block">Hotel Rooms</a>
-			<a href="" class="btn btn-success btn-block">Accommodation Type</a>
-			
-			<a href="" class="btn btn-success btn-block">Rooms Available</a>
-			<a href="" class="btn btn-success btn-block">Bookings</a>
-			<a href="" class="btn btn-success btn-block">Hotel Policies</a>
+
+			<a href="{{ route('hotel.policy.create', $hotel->id) }}" class="btn btn-success btn-block">Hotel Policies</a>
 		</div>
+		
 		<div class="well">
-			<h4>Recommendations</h4>
+			<h4>Hotel Policies</h4>
 			<hr>
+			@if(!empty($hotel->policies))
+				empty
+			@else
 			<dl>
-				<dt></dt>
-				<dd>100% of guests recommend</dd>
+				<dt>Check In</dt>
+				<dd>{{ $hotel->policies->check_in }}</dd>
 			</dl>
 			<dl>
-				<dt></dt>
-				<dd>Guests Rating</dd>
-			</dl>
-		</div>
-		<div class="well">
-			<h4>TripAdvisor Review</h4>
-			<hr>
-			<dl>
-				<dt></dt>
-				<dd>100% of guests recommend</dd>
+				<dt>Check Out</dt>
+				<dd>{{ $hotel->policies->check_out }}</dd>
 			</dl>
 			<dl>
-				<dt></dt>
-				<dd>Guests Rating</dd>
+				<dt>Cancellation Policy</dt>
+				<dd>{{ $hotel->policies->cancellation }}</dd>
 			</dl>
+			<dl>
+				<dt>Children and Beds</dt>
+				<dd>{{ $hotel->policies->children_beds }}</dd>
+			</dl>
+			<dl>
+				<dt>Pets</dt>
+				<dd>{{ $hotel->policies->pets }}</dd>
+			</dl>
+			<dl>
+				<dt>Groups</dt>
+				<dd>{{ $hotel->policies->groups }}</dd>
+			</dl>
+			<dl>
+				<dt>Payment Policy</dt>
+				<dd>{{ $hotel->policies->payment }}</dd>
+			</dl>
+			@endif
 		</div>
 		
 		<div class="well">

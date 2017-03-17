@@ -8,6 +8,7 @@ use App\Http\Requests;
 
 use App\Hotel;
 use App\HotelRating;
+use App\HotelPolicy;
 use DB;
 use Image;
 use Purifier;
@@ -77,6 +78,11 @@ class ManageHotelsController extends Controller
 			'hotel_rating' => $request->hotel_rating
 		);
 		DB::table('hotel_ratings')->insert($data);
+		
+		$data2 = array(
+			'hotel_id' => $hotel->id
+		);
+		DB::table('hotel_policies')->insert($data2);
 		
 
 
@@ -175,5 +181,42 @@ class ManageHotelsController extends Controller
 	    
 	    Session::flash('success', 'Successfully updated!');
 	    return redirect()->route('manage-hotels.show', [$hotel->id]);
+    }
+    
+    public function addHotelPolicy($hotel_id)
+    {
+		$hotel = Hotel::find($hotel_id);
+		
+		return view('manage-hotels.hotel-policies.create')->withHotel($hotel);
+    }
+    
+    public function storeHotelPolicy(Request $request, $hotel_id)
+    {
+	    $this->validate($request, array(
+		   'check_in' => 'required', 
+		   'check_out' => 'required', 
+		   'cancellation' => 'required', 
+		   'children_beds' => 'required', 
+		   'pets' => 'required', 
+		   'groups' => 'required', 
+		   'payment' => 'required' 
+	    ));
+	    
+		$hotel = Hotel::find($hotel_id);
+		$policy = new HotelPolicy;
+		
+		$policy->hotel()->associate($hotel);
+		$policy->check_in = $request->check_in;
+		$policy->check_out = $request->check_out;
+		$policy->cancellation = $request->cancellation;
+		$policy->children_beds = $request->children_beds;
+		$policy->pets = $request->pets; 
+		$policy->groups = $request->groups;
+		$policy->payment = $request->payment;
+		
+		$policy->save();
+		
+		Session::flash('success', 'Successfully added policy!');
+		return redirect()->route('manage-hotels.show', [$hotel->id]);
     }
 }

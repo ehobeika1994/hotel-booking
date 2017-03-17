@@ -34,3 +34,7 @@ Route::put('update-rating/{hotel_id}/update/{id}', ['uses' => 'ManageHotelsContr
 //Hotel Room
 Route::get('manage-hotels/{hotel_id}/hotel-rooms', ['uses' => 'RoomsController@create', 'as' => 'hotel.room.create']);
 Route::post('add-room/{hotel_id}', ['uses' => 'RoomsController@store', 'as' => 'hotel.room.store']);
+
+//Hotel Policies
+Route::get('manage-hotels/{hotel_id}/hotel-policies', ['uses' => 'ManageHotelsController@addHotelPolicy', 'as' => 'hotel.policy.create']);
+Route::post('add-policy/{hotel_id}', ['uses' => 'ManageHotelsController@storeHotelPolicy', 'as' => 'hotel.policy.store']);

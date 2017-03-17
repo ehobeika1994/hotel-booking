@@ -131,38 +131,34 @@
 		<div class="well">
 			<h4>Hotel Policies</h4>
 			<hr>
-			@if(!empty($hotel->policies))
-				empty
-			@else
 			<dl>
 				<dt>Check In</dt>
-				<dd>{{ $hotel->policies->check_in }}</dd>
+				<dd>{{ !empty($hotel->policies->check_in) ? $hotel->policies->check_in : 'undefined' }}</dd>
 			</dl>
 			<dl>
 				<dt>Check Out</dt>
-				<dd>{{ $hotel->policies->check_out }}</dd>
+				<dd>{{ !empty($hotel->policies->check_out) ? $hotel->policies->check_out : 'undefined' }}</dd>
 			</dl>
 			<dl>
 				<dt>Cancellation Policy</dt>
-				<dd>{{ $hotel->policies->cancellation }}</dd>
+				<dd>{{ !empty($hotel->policies->cancellation) ? $hotel->policies->cancellation : 'undefined' }}</dd>
 			</dl>
 			<dl>
 				<dt>Children and Beds</dt>
-				<dd>{{ $hotel->policies->children_beds }}</dd>
+				<dd>{{ !empty($hotel->policies->children_beds) ? $hotel->policies->children_beds : 'undefined' }}</dd>
 			</dl>
 			<dl>
 				<dt>Pets</dt>
-				<dd>{{ $hotel->policies->pets }}</dd>
+				<dd>{{ !empty($hotel->policies->pets) ? $hotel->policies->pets : 'undefined'  }}</dd>
 			</dl>
 			<dl>
 				<dt>Groups</dt>
-				<dd>{{ $hotel->policies->groups }}</dd>
+				<dd>{{ !empty($hotel->policies->groups) ? $hotel->policies->groups : 'undefined' }}</dd>
 			</dl>
 			<dl>
 				<dt>Payment Policy</dt>
-				<dd>{{ $hotel->policies->payment }}</dd>
+				<dd>{{ !empty($hotel->policies->payment) ? $hotel->policies->payment : 'undefined'  }}</dd>
 			</dl>
-			@endif
 		</div>
 		
 		<div class="well">

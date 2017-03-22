@@ -41,7 +41,7 @@
 		{{ Form::label('hotel_description', 'Hotel Description:', ['class' => 'form-spacing-top']) }}
 		{{ Form::textarea('hotel_description', null, array('class' => 'form-control')) }}
 			
-		{{ Form::submit('Add Hotel', array('class' => 'btn btn-success btn-lg btn-block form-spacing-top')) }}
+		{{ Form::submit('Update Hotel', array('class' => 'btn btn-success btn-lg btn-block form-spacing-top')) }}
 		
 		{!! Form::close() !!}
 	</div>
@@ -49,22 +49,5 @@
 @endsection
 
 @section('scripts')
-<script src="//cdnjs.cloudflare.com/ajax/libs/speakingurl/13.0.0/speakingurl.min.js"></script>
-{!! Html::script('js/jquery.stringtoslug.min.js') !!}
 
-<script>
-$(document).ready( function() {
-    $("#hotel-name").stringToSlug({
-        setEvents: 'keyup keydown blur',
-        getPut: '#hotel_slug',
-        space: '-',
-        prefix: '',
-        suffix: '',
-        replace: '',
-        AND: 'and',
-        options: {},
-        callback: false
-    });
-});	
-</script>
 @endsection

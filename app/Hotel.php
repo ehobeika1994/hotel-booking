@@ -30,4 +30,9 @@ class Hotel extends Model
     {
 	    return $this->hasOne('App\HotelPolicy');
     }
+
+    public function address()
+    {
+        return $this->hasOne('App\HotelAddress');
+    }
 }

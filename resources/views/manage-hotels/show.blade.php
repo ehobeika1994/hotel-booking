@@ -60,7 +60,7 @@
 			<span class="glyphicon glyphicon-star"></span>
 			@endif
 		</h1>
-		<p><small>Hotel Address</small></p>
+		<p><small>{{ $hotel->address->hotel_address }}<br>{{ $hotel->address->hotel_phone_number }}<br>{{ $hotel->address->hotel_email_address }}<br>{{ $hotel->address->hotel_website }}</small></p>
 		<p class="lead">{!! $hotel->hotel_description !!}</p>
 
 		<div class="well">
@@ -184,11 +184,10 @@
 		});
 		
       function initMap() {
-        var uluru = {lat: 13.442634, lng: -16.722511};
+        var uluru = {lat: {{ $hotel->address->longitude }}, lng: {{ $hotel->address->latitude }} };
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 16,
-          center: uluru,
-          mapTypeId: 'satellite'
+          zoom: 18,
+          center: uluru
         });
         map.setTilt(45);
         var marker = new google.maps.Marker({

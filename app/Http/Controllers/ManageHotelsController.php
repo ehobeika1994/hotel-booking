@@ -115,7 +115,9 @@ class ManageHotelsController extends Controller
      */
     public function edit($id)
     {
-        return view('manage-hotels.edit');
+    	$hotel = Hotel::find($id);
+
+        return view('manage-hotels.edit')->withHotel($hotel);
     }
 
     /**
@@ -127,7 +129,44 @@ class ManageHotelsController extends Controller
      */
     public function update(Request $request, $id)
     {
+    	// validate the data
+        $hotel = Hotel::find($id);
+        
+	    // validate all hotel fields
+		$this->validate($request, array(
+			'hotel_name' 		=>	'required|max:255', 
+			'hotel_slug'		=>	"required|alpha-dash|min:5|max:255|unique:hotels,hotel_slug, $id", 
+			'cover_image' 		=> 	'image', 
+			'hotel_description'	=>	'required'
+		));      
+                
+        $hotel->hotel_name = $request->hotel_name;
+		$hotel->hotel_slug = $request->hotel_slug;
+		$hotel->hotel_description = Purifier::clean($request->hotel_description);
+        
+		// Save the cover photo as well
+		if ($request->hasFile('cover_image'))
+		{
+			//add new photo
+			$image = $request->file('cover_image');
+			$filename = time() . '.' . $image->getClientOriginalExtension();
+			$location = public_path('images/cover-images/' . $filename);
+			// Save Image at Location
+			Image::make($image)->resize(800, 400)->save($location);
+			$oldFileName = $hotel->cover_image;
+			//update the databaes
+			// save image in database
+			$hotel->cover_image = $filename;
+			//delete old photo
+			Storage::delete($oldFileName);
+		}
 
+        
+        $hotel->save();
+		
+		Session::flash('success', 'You have successfully updated ' . $hotel->hotel_name);
+        // redirect to another page
+		return redirect()->route('manage-hotels.show', $hotel->id);
     }
 
     /**
@@ -219,6 +258,36 @@ class ManageHotelsController extends Controller
 		$policy->save();
 		
 		Session::flash('success', 'Successfully added policy!');
+		return redirect()->route('manage-hotels.show', [$hotel->id]);
+    }
+
+     public function updateHotelPolicy(Request $request, $id, $hotel_id)
+    {
+	   	$this->validate($request, array(
+		   'check_in' => 'required', 
+		   'check_out' => 'required', 
+		   'cancellation' => 'required', 
+		   'children_beds' => 'required', 
+		   'pets' => 'required', 
+		   'groups' => 'required', 
+		   'payment' => 'required' 
+	    ));
+
+		$hotel = Hotel::find($hotel_id);
+		$policy = HotelPolicy::find($id);
+		
+		$policy->hotel()->associate($hotel);
+		$policy->check_in = $request->check_in;
+		$policy->check_out = $request->check_out;
+		$policy->cancellation = $request->cancellation;
+		$policy->children_beds = $request->children_beds;
+		$policy->pets = $request->pets; 
+		$policy->groups = $request->groups;
+		$policy->payment = $request->payment;
+		
+		$policy->save();
+		
+		Session::flash('success', 'Successfully update policy!');
 		return redirect()->route('manage-hotels.show', [$hotel->id]);
     }
 }

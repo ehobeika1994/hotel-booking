@@ -26,7 +26,7 @@ Route::post('add-hotel-facility/{hotel_id}', ['uses' => 'HotelFacilityController
 Route::get('manage-hotels/{hotel_id}/upload-images', ['uses' => 'UploadImagesController@index', 'as' => 'manage-hotels.upload-images.index']);
 Route::post('add-hotel-images/{hotel_id}', ['uses' => 'UploadImagesController@store', 'as' => 'hotel.images.store']);
 
-//Hote rating 
+//Hotel rating 
 Route::get('manage-hotels/{hotel_id}/hotel-rating', ['uses' => 'ManageHotelsController@addHotelRating', 'as' => 'hotel.rating']);
 Route::post('store-rating/{hotel_id}', ['uses' => 'ManageHotelsController@storeHotelRating', 'as' => 'hotel.rating.storeRating']);
 Route::put('update-rating/{hotel_id}/update/{id}', ['uses' => 'ManageHotelsController@updateHotelRating', 'as' => 'hotel.rating.updateRating']);
@@ -38,3 +38,4 @@ Route::post('add-room/{hotel_id}', ['uses' => 'RoomsController@store', 'as' => '
 //Hotel Policies
 Route::get('manage-hotels/{hotel_id}/hotel-policies', ['uses' => 'ManageHotelsController@addHotelPolicy', 'as' => 'hotel.policy.create']);
 Route::post('add-policy/{hotel_id}', ['uses' => 'ManageHotelsController@storeHotelPolicy', 'as' => 'hotel.policy.store']);
+Route::put('update-policy/{hotel_id}/update/{id}', ['uses' => 'ManageHotelsController@updateHotelPolicy', 'as' => 'hotel.policy.update']);

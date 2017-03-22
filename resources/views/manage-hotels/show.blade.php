@@ -65,10 +65,11 @@
 
 		<div class="well">
 			<h4>Facilities</h4>
+			<hr>
 			<ul>
 				
 				@forelse($hotel->facilities as $facility)
-				<li><span class="glyphicon glyphicon-chevron-right"> {{ $facility->hotel_facility }}</span></li>
+				<li><span class="glyphicon glyphicon-chevron-right"></span> {{ $facility->hotel_facility }}</li>
 				@empty
 					<li><b>No Facilities available! Add them!</b></li>
 				@endforelse
@@ -78,6 +79,7 @@
 		
 		<div class="well">
 			<h4>Images</h4>
+			<hr>
 			@forelse($hotel->images as $image)
 				<img src="{{ asset('images/hotel-images/' . $image->hotel_image) }}" height="300" width="234" class="img-thumbnail">
 			@empty
@@ -89,6 +91,7 @@
 		
 		<div class="well">
 			<h4>Rooms</h4>
+			<hr>
 			@forelse($hotel->rooms as $room)
 			<div class="col-sm-6 col-md-4">
 				<div class="thumbnail">
@@ -118,9 +121,6 @@
 			<hr>
 			<a href="{{ route('manage-hotels.edit', $hotel->id) }}" class="btn btn-primary btn-block">Edit</a>
 			<a href="{{ route('manage-hotels.index') }}" class="btn btn-warning btn-block">Go Back</a>
-			{!! Form::open(['route' => ['manage-hotels.destroy', $hotel->id], 'method' => 'DELETE']) !!}
-				{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) }}
-			{!! Form::close() !!}
 			<hr>
 			<a href="{{ route('hotel.rating', $hotel->id) }}" class="btn btn-success btn-block">Hotel Rating</a>
 			<a href="{{ route('hotel.facilities', $hotel->id) }}" class="btn btn-success btn-block">Hotel Facilities</a>
@@ -128,6 +128,10 @@
 			<a href="{{ route('hotel.room.create', $hotel->id) }}" class="btn btn-success btn-block">Hotel Rooms</a>
 
 			<a href="{{ route('hotel.policy.create', $hotel->id) }}" class="btn btn-success btn-block">Hotel Policies</a>
+			<hr>
+			{!! Form::open(['route' => ['manage-hotels.destroy', $hotel->id], 'method' => 'DELETE']) !!}
+				{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) }}
+			{!! Form::close() !!}
 		</div>
 		
 		<div class="well">

@@ -59,7 +59,7 @@ class HotelFacilityController extends Controller
         Session::flash('success', 'A new facility has been added!');
         
         //redirect to hotel
-        return redirect()->route('manage-hotels.show', [$hotel->id]);
+        return redirect()->back();
     }
 
     /**

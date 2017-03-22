@@ -18,8 +18,9 @@
 			<li><a href="{{ route('manage-hotels.index') }}">Manage Hotels</a></li>
 			<li><a href="{{ route('manage-hotels.show', $hotel->id) }}">{{ $hotel->hotel_name }}</a></li>
 			<li class="active">Hotel Policies</li>
-		</ol>		<hr>
-		{!! Form::open(['route' => ['hotel.policy.store', $hotel->id], 'method' => 'post']) !!}
+		</ol>		
+		<hr>
+		{!! Form::model($hotel->policies, ['route' => ['hotel.policy.update', $hotel->policies->id, $hotel->id], 'method' => 'put']) !!}
     		
 		{{ Form::label('check_in', 'Check In', ['class' => 'form-spacing-top']) }}
 		{{ Form::text('check_in', null, ['class' => 'form-control']) }}
@@ -42,7 +43,7 @@
 		{{ Form::label('payment', 'Payment', ['class' => 'form-spacing-top']) }}
 		{{ Form::text('payment', null, ['class' => 'form-control']) }}
 					
-		{{ Form::submit('Add Policy', ['class' => 'btn btn-success btn-lg btn-block form-spacing-top']) }}
+		{{ Form::submit('Update Policy', ['class' => 'btn btn-success btn-lg btn-block form-spacing-top']) }}
 		
 		{!! Form::close() !!}
 		<hr>	

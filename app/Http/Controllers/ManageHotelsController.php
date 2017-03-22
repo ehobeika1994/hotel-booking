@@ -9,16 +9,18 @@ use App\Http\Requests;
 use App\Hotel;
 use App\HotelRating;
 use App\HotelPolicy;
+
 use DB;
 use Image;
 use Purifier;
 use Session;
+use Storage;
 
 class ManageHotelsController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * Paginate to 15 items a page. 
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -137,7 +139,7 @@ class ManageHotelsController extends Controller
     public function destroy($id)
     {
 		$hotel = Hotel::find($id);
-		$hotel->facilities()->detach();
+		Storage::delete($hotel->cover_image);
 		$hotel->delete();
 		
 		Session::flash('success', 'Hotel Deleted!');

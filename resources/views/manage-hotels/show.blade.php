@@ -118,7 +118,9 @@
 			<hr>
 			<a href="{{ route('manage-hotels.edit', $hotel->id) }}" class="btn btn-primary btn-block">Edit</a>
 			<a href="{{ route('manage-hotels.index') }}" class="btn btn-warning btn-block">Go Back</a>
-			<a href="{{ route('manage-hotels.destroy', $hotel->slug) }}" class="btn btn-danger btn-block">Delete</a>
+			{!! Form::open(['route' => ['manage-hotels.destroy', $hotel->id], 'method' => 'DELETE']) !!}
+				{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) }}
+			{!! Form::close() !!}
 			<hr>
 			<a href="{{ route('hotel.rating', $hotel->id) }}" class="btn btn-success btn-block">Hotel Rating</a>
 			<a href="{{ route('hotel.facilities', $hotel->id) }}" class="btn btn-success btn-block">Hotel Facilities</a>

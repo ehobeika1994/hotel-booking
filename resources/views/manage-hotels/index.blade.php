@@ -36,7 +36,9 @@
 					<td>{{ $hotel->created_at }}</td>
 					<td>
 						<a href="{{ route('manage-hotels.show', $hotel->id) }}" class="btn btn-success">View</a>
-						<a href="{{ route('manage-hotels.destroy', $hotel->id) }}" class="btn btn-danger">Delete</a>
+						{!! Form::open(['route' => ['manage-hotels.destroy', $hotel->id], 'method' => 'DELETE']) !!}
+							{{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+						{!! Form::close() !!}
 					</td>
 				</tr>
 				@empty

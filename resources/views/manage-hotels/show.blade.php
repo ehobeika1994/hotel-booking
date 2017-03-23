@@ -118,6 +118,7 @@
 	<div class="col-md-4">
 		<div class="well" style="margin-top: 65px;">
 			<h3>Manage Hotels</h3>
+			@if($hotel->active == 1) <span style="color:green;">This hotel is currently enabled for public viewing!</span> @else <span style="color:red;">This hotel is currently disabled from public viewing!</span> @endif
 			<hr>
 			<a href="{{ route('manage-hotels.edit', $hotel->id) }}" class="btn btn-primary btn-block">Edit</a>
 			<a href="{{ route('manage-hotels.index') }}" class="btn btn-warning btn-block">Go Back</a>

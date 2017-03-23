@@ -61,6 +61,7 @@ class ManageHotelsController extends Controller
 		$hotel->hotel_name = $request->hotel_name;
 		$hotel->hotel_slug = $request->hotel_slug;
 		$hotel->hotel_description = Purifier::clean($request->hotel_description);
+		$hotel->active = 0;
 		
 		// Save the cover photo as well
 		if ($request->hasFile('cover_image'))
@@ -143,6 +144,7 @@ class ManageHotelsController extends Controller
         $hotel->hotel_name = $request->hotel_name;
 		$hotel->hotel_slug = $request->hotel_slug;
 		$hotel->hotel_description = Purifier::clean($request->hotel_description);
+		$hotel->active = $request->has('active') ? true : false; 
         
 		// Save the cover photo as well
 		if ($request->hasFile('cover_image'))

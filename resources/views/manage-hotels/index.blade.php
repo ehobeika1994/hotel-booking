@@ -10,8 +10,8 @@
 @section('content')
 
 <div class="row">
-	<div class="col-md-8">
-		<h1>Manage hotel <br><small>{{ $hotels->count() }} hotels found!</small></h1>
+	<div class="col-md-12">
+		<h1>Manage hotel <br><small style="font-size: 14px;">There are <b>{{ $hotels->total() }}</b> hotels found in the system!</small></h1>
 		<a href="{{ route('manage-hotels.create') }}" class="btn btn-success btn-block">Add Hotel</a>
 
 		<hr>
@@ -23,6 +23,7 @@
 					<th>Hotel Name</th>
 					<th>Slug</th>
 					<th>Active</th>
+					<th>Location</th>
 					<th>Options</th>
 					<th>Delete</th>
 				</tr>
@@ -35,6 +36,7 @@
 					<td>{{ $hotel->hotel_name }}</td>
 					<td>{{ $hotel->hotel_slug }}</td>
 					<td>@if($hotel->active == 1)Yes @else No @endif</td>
+					<td>{{ $hotel->address->hotel_address }}</td>
 					<td>
 						<a href="{{ route('manage-hotels.show', $hotel->id) }}" class="btn btn-success btn-sm btn-block">View</a>
 						<a href="{{ route('manage-hotels.edit', $hotel->id) }}" class="btn btn-primary btn-sm btn-block">Edit</a>
@@ -51,6 +53,7 @@
 				@endforelse
 			</tbody>
 		</table>
+		{!! $hotels->links() !!}
 	</div>
 </div>
 @endsection

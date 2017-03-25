@@ -25,7 +25,8 @@ class ManageHotelsController extends Controller
      */
     public function index()
     {
-	    $hotels = Hotel::paginate(15);
+	    $hotels = Hotel::orderBy('hotel_name', 'asc')->paginate(8);
+
         return view('manage-hotels.index')->withHotels($hotels);
     }
 
@@ -61,7 +62,7 @@ class ManageHotelsController extends Controller
 		$hotel->hotel_name = $request->hotel_name;
 		$hotel->hotel_slug = $request->hotel_slug;
 		$hotel->hotel_description = Purifier::clean($request->hotel_description);
-		$hotel->active = 0;
+		$hotel->active = false;
 		
 		// Save the cover photo as well
 		if ($request->hasFile('cover_image'))
@@ -76,21 +77,24 @@ class ManageHotelsController extends Controller
 		}
 
 		$hotel->save();		
-		$data = array(
+		$rating = array(
 			'hotel_id' => $hotel->id,
 			'hotel_rating' => $request->hotel_rating
 		);
-		DB::table('hotel_ratings')->insert($data);
+		DB::table('hotel_ratings')->insert($rating);
 		
-		$data2 = array(
+		$policy = array(
 			'hotel_id' => $hotel->id
 		);
-		DB::table('hotel_policies')->insert($data2);
-		
+		DB::table('hotel_policies')->insert($policy);
+		$address = array(
+			'hotel_id' => $hotel->id, 
+		);
+		DB::table('hotel_addresses')->insert($address);
 
 
 		//Redirect message
-		Session::flash('success', 'A new hotel has successfully been added to your system!');
+		Session::flash('success', 'A new hotel has successfully been added to the system!');
 		// redirect to another page
 		return redirect()->route('manage-hotels.index');
     }

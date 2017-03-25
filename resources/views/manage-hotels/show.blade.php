@@ -60,7 +60,7 @@
 			<span class="glyphicon glyphicon-star"></span>
 			@endif
 		</h1>
-		<p><small>{{ $hotel->address->hotel_address }}<br>{{ $hotel->address->hotel_phone_number }}<br>{{ $hotel->address->hotel_email_address }}<br>{{ $hotel->address->hotel_website }}</small></p>
+		<p><small>{{ $hotel->address->hotel_address }}, {{ $hotel->address->hotel_phone_number }}, {{ $hotel->address->hotel_email_address }}, {{ $hotel->address->hotel_website }}</small></p>
 		<p class="lead">{!! $hotel->hotel_description !!}</p>
 
 		<div class="well">

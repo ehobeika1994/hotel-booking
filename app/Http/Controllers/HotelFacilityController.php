@@ -12,6 +12,10 @@ use Session;
 
 class HotelFacilityController extends Controller
 {
+   /* public function __construct()
+    {
+        return $this->middleware('auth');
+    }*/
     /**
      * Display a listing of the resource.
      *

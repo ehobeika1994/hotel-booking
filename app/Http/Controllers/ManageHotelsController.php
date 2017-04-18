@@ -18,6 +18,10 @@ use Storage;
 
 class ManageHotelsController extends Controller
 {
+	/*public function __construct()
+	{
+		return $this->middleware('auth');
+	}*/
     /**
      * Display a listing of the resource.
      * Paginate to 15 items a page. 

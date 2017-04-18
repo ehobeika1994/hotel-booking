@@ -52,8 +52,11 @@
 					<p><b>NO HOTELS AVAILABLE YET! START UPLOADING NOW!</b></p>
 				@endforelse
 			</tbody>
-		</table>
-		{!! $hotels->links() !!}
+		</table> 
+		<div class="text-center">
+			{!! $hotels->links() !!}
+		</div>
+		
 	</div>
 </div>
 @endsection

@@ -26,6 +26,14 @@
 		{{ Form::submit('Upload Photos', array('class' => 'btn btn-success btn-lg btn-block form-spacing-top')) }}
 		
 		{!! Form::close() !!}
+		<hr>	
+		<ul>
+			@foreach($hotel->images as $image)
+				<img src="{{ asset('images/hotel-images/' . $image->hotel_image) }}" height="300" width="234" class="img-thumbnail">
+				<a href="#">Delete Image {{$image->id}}</a>
+			@endforeach
+			
+		</ul>
 	</div>
 </div>
 @endsection

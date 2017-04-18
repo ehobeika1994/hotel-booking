@@ -4,14 +4,14 @@
 
 @section('stylesheets')
 	{!! Html::style('css/styles.css') !!}
-	<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+
+	<script src="http://cloud.tinymce.com/stable/tinymce.min.js?apiKey=eqiy81nybteh69dp91lp3w0tsjc4ulfd9dqt5z4xok31fqzq"></script>
 	
 	<script>
 		tinymce.init({
 			selector: 'textarea',
 			plugins: 'link code'
 		});		
-		tinymce.activeEditor.dom.addClass(tinyMCE.activeEditor.dom.select('p'), 'lead');
 	</script>
 @endsection
 
@@ -33,7 +33,7 @@
 		{{ Form::text('hotel_name', null, array('class' => 'form-control', 'id' => 'hotel-name')) }}
 		
 		{{ Form::label('cover_image', 'Upload Cover Photo', ['class' => 'form-spacing-top']) }}
-		{{ Form::file('cover_image') }}
+		{{ Form::file('cover_image', null, array('class' => 'form-control')) }}
 		
 		{{ Form::label('hotel_slug', 'Hotel Slug:', ['class' => 'form-spacing-top']) }}
 		{{ Form::text('hotel_slug', null, array('class' => 'form-control', 'id' => 'hotel-slug', 'readonly')) }}
@@ -49,26 +49,7 @@
 				<option value="4">4</option>
 				<option value="5">5</option>
 			</select>
-		<!--
-		
-		{{ Form::label('hotel-rooms', 'Hotel Rooms:', ['class' => 'form-spacing-top']) }}
-		{{ Form::textarea('hotel-rooms', null, array('class' => 'form-control')) }}
-		
-		{{ Form::label('hotel-address', 'Hotel Address:', ['class' => 'form-spacing-top']) }}
-		{{ Form::textarea('hotel-address', null, array('class' => 'form-control')) }}
-		
-		{{ Form::label('hotel-map-location', 'Hotel Map Location:', ['class' => 'form-spacing-top']) }}
-		{{ Form::text('hotel-map-location', null, array('class' => 'form-control')) }}
 
-		{{ Form::label('hotel-rating-id', 'Hotel Rating', ['class' => 'form-spacing-top']) }}
-			<select class="form-control" name="hotel-rating-id">
-				<option value="1">1</option>
-				<option value="1">2</option>
-				<option value="1">3</option>
-				<option value="1">4</option>
-				<option value="1">5</option>
-			</select>
-		-->	
 		{{ Form::submit('Add Hotel', array('class' => 'btn btn-success btn-lg btn-block form-spacing-top')) }}
 		
 		{!! Form::close() !!}

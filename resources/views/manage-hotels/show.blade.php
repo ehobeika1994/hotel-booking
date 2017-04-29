@@ -32,7 +32,7 @@
 			<li class="active">{{ $hotel->hotel_name }}</li>
 		</ol>
 		
-		<img src="{{ asset('images/cover-images/' . $hotel->cover_image) }}" class="" height="400" width="750" alt="hotel-front-image"/>
+		<img src="{{ asset('images/cover-images/' . $hotel->cover_image) }}" class="" height="400" width="370" alt="hotel-front-image"/>
 		<h1>{{ $hotel->hotel_name }} 
 			@if($hotel->ratings->hotel_rating == 1)
 			<span class="glyphicon glyphicon-star"></span>
@@ -123,16 +123,26 @@
 			<a href="{{ route('manage-hotels.edit', $hotel->id) }}" class="btn btn-primary btn-block">Edit</a>
 			<a href="{{ route('manage-hotels.index') }}" class="btn btn-warning btn-block">Go Back</a>
 			<hr>
+			<a href="{{ route('hotel.address.create', $hotel->id) }}" class="btn btn-success btn-block">Hotel Address</a>
 			<a href="{{ route('hotel.rating', $hotel->id) }}" class="btn btn-success btn-block">Hotel Rating</a>
 			<a href="{{ route('hotel.facilities', $hotel->id) }}" class="btn btn-success btn-block">Hotel Facilities</a>
 			<a href="{{ route('manage-hotels.upload-images.index', $hotel->id) }}" class="btn btn-success btn-block">Upload Images</a>
 			<a href="{{ route('hotel.room.create', $hotel->id) }}" class="btn btn-success btn-block">Hotel Rooms</a>
-
 			<a href="{{ route('hotel.policy.create', $hotel->id) }}" class="btn btn-success btn-block">Hotel Policies</a>
 			<hr>
-			{!! Form::open(['route' => ['manage-hotels.destroy', $hotel->id], 'method' => 'DELETE']) !!}
-				{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) }}
+			@if($hotel->active == 1)
+			{!! Form::open(['route' => ['hotel.disable', $hotel->id], 'method' => 'PUT']) !!}
+				{{ Form::submit('Disable Hotel', ['class' => 'btn btn-danger btn-block form-spacing-top']) }}
 			{!! Form::close() !!}
+			@else 
+			{!! Form::open(['route' => ['hotel.enable', $hotel->id], 'method' => 'PUT']) !!}
+				{{ Form::submit('Enable Hotel', ['class' => 'btn btn-primary btn-block form-spacing-top']) }}
+			{!! Form::close() !!}	
+			@endif
+			
+			<!--{!! Form::open(['route' => ['manage-hotels.destroy', $hotel->id], 'method' => 'DELETE']) !!}
+				{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-block form-spacing-top']) }}
+			{!! Form::close() !!}-->
 		</div>
 		
 		<div class="well">

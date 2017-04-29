@@ -300,4 +300,22 @@ class ManageHotelsController extends Controller
 		Session::flash('success', 'Successfully update policy!');
 		return redirect()->route('manage-hotels.show', [$hotel->id]);
     }
+    
+    public function enableHotel($id)
+    {
+	    $hotel = Hotel::find($id);
+	    $hotel->active = 1; 
+	    $hotel->save();
+	    
+	    return redirect()->route('manage-hotels.show', [$hotel->id]);
+    }
+    
+    public function disableHotel($id)
+    {
+	    $hotel = Hotel::find($id);
+	    $hotel->active = 0; 
+	    $hotel->save();
+	    
+	    return redirect()->route('manage-hotels.show', [$hotel->id]);
+    }
 }

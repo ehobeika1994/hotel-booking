@@ -11,7 +11,9 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<h1>Manage hotel <br><small style="font-size: 14px;">There are <b>{{ $hotels->total() }}</b> hotels found in the system!</small></h1>
+		<h1>Manage hotel 
+			<br><small style="font-size: 14px;">There are <b>{{ $hotels->total() }}</b> hotels found in the system!</small></h1>
+		<p style="color: red;">This section is only used by a super admin to manage hotels. I.E. adding new hotels to the system, updating hotels, deleting hotels. This section also allows the super admin to add images to hotels.</p>
 		<a href="{{ route('manage-hotels.create') }}" class="btn btn-success btn-block">Add Hotel</a>
 
 		<hr>
@@ -19,6 +21,7 @@
 		<table class="table">
 			<thead>
 				<tr>
+					<th>ID</th>
 					<th></th>
 					<th>Hotel Name</th>
 					<th>Slug</th>
@@ -32,6 +35,7 @@
 			<tbody>
 				@forelse($hotels as $hotel)
 				<tr>
+					<td>{{ $hotel->id }}</td>
 					<td><img src="{{ asset('images/cover-images/' . $hotel->cover_image) }}" width="100" height="75"></td>
 					<td>{{ $hotel->hotel_name }}</td>
 					<td>{{ $hotel->hotel_slug }}</td>

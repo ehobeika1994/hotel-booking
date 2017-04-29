@@ -41,6 +41,7 @@
 		{{ Form::label('hotel_description', 'Hotel Description:', ['class' => 'form-spacing-top']) }}
 		{{ Form::textarea('hotel_description', null, array('class' => 'form-control')) }}
 
+		{{ Form::label('active', 'Active:', ['class' => 'form-spacing-top']) }}
 		{{ Form::checkbox('active', $hotel->active, null, array('class' => 'form-control')) }}
 			
 		{{ Form::submit('Update Hotel', array('class' => 'btn btn-success btn-lg btn-block form-spacing-top')) }}

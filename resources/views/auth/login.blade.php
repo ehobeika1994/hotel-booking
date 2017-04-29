@@ -43,9 +43,21 @@
                 <p><a href="#">Manage Bookings</a></p>
                 <p><a href="#">Manage Customer Accounts</a></p>
                 <p><a href="#">System Settings</a></p>-->
-  
             </div>
 
+            {!! Form::open() !!}
+    
+			{{ Form::label('email', 'Email') }}
+            {{ Form::email('email', null, ['class' => 'form-control']) }}
+        
+			{{ Form::label('password', 'Password') }}
+			{{ Form::password('password', null, ['class' => 'form-control']) }}
+			
+			{{ Form::checkbox('remember') }}
+			
+			{{ Form::submit('Login') }}
+			
+            {!! Form::close() !!}
         </div>
     </body>
 </html>

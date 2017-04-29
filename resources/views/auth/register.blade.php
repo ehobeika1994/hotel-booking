@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>Laravel | Register</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -43,9 +43,25 @@
                 <p><a href="#">Manage Bookings</a></p>
                 <p><a href="#">Manage Customer Accounts</a></p>
                 <p><a href="#">System Settings</a></p>-->
-  
             </div>
 
+            {!! Form::open() !!}
+    
+			{{ Form::label('name', 'Full Name') }}
+            {{ Form::text('name', null, ['class' => 'form-control']) }}
+            
+			{{ Form::label('email', 'Email') }}
+            {{ Form::email('email', null, ['class' => 'form-control']) }}
+        
+			{{ Form::label('password', 'Password') }}
+			{{ Form::password('password', ['class' => 'form-control']) }}
+			
+			{{ Form::label('password_confirmation', 'Password Confirmation') }}
+			{{ Form::password('password_confirmation', ['class' => 'form-control']) }}
+			
+			{{ Form::submit('Register') }}
+			
+            {!! Form::close() !!}
         </div>
     </body>
 </html>

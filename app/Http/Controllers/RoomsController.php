@@ -14,10 +14,10 @@ use Purifier;
 
 class RoomsController extends Controller
 {
-    /*public function __construct()
+    public function __construct()
     {
         return $this->middleware('auth');
-    }*/
+    }
     /**
      * Display a listing of the resource.
      *

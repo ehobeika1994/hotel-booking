@@ -10,6 +10,9 @@
 		<div class="container">
 			@include('partials._messages')
 			
+ 			{{ Auth::check() ? "Logged In as" : "Logged Out" }} <b>{{ Auth::user()->name }}</b>
+
+ 					
 			@yield('content')
 			<hr/>
 			@include('partials._footer')

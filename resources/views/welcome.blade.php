@@ -43,7 +43,11 @@
                 <p><a href="#">Manage Bookings</a></p>
                 <p><a href="#">Manage Customer Accounts</a></p>
                 <p><a href="#">System Settings</a></p>-->
-  
+                @if(Auth::check())
+				<p><a href="{{ route('manage-hotels.index') }}">Manage Hotels</a></p>
+				@else
+				<p><a href="{{ route('user.login') }}">Login</a></p>
+				@endif
             </div>
 
         </div>

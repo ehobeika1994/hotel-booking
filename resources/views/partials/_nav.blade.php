@@ -24,11 +24,12 @@
 			        
 		            <li><a href="{{ route('manage-hotels.index') }}">Manage Hotels</a></li>
 		            <li><a href="">View Bookings</a></li>
-		            <li><a href="">Logout</a></li>
+		            <li><a href="{{ route('user.logout') }}">Logout</a></li>
 		            <li role="separator" class="divider"></li>
+		            @if(Auth::check())
 		            <li><a href="">Login</a></li>
 		            <li><a href="">Register</a></li>
-		            
+		            @endif
 		          </ul>
 		        </li>
 		      </ul>

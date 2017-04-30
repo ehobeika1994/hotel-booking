@@ -60,3 +60,7 @@ Route::put('manage-hotels/{hotel_id}/disable', ['uses' => 'ManageHotelsControlle
 
 /** Manage Customer **/
 Route::resource('manage-customer', 'CustomerController');
+
+/** Customers Active **/
+Route::put('manage-customer/{customer_id}/enable', ['uses' => 'CustomerController@activateCustomer', 'as' => 'customer.enable']);
+Route::put('manage-customer/{customer_id}/disable', ['uses' => 'CustomerController@disableCustomer', 'as' => 'customer.disable']);

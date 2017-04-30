@@ -19,18 +19,16 @@
 		<hr>
 		
 		<table class="table">
-			<thead>
+			<thead style="color:blue;">
 				<tr>
-					<th>ID</th>
-					<th>Membership Number</th>
+					<th>Membership No.</th>
 					<th>Title</th>
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Email Address</th>
 					<th>Country</th>
 					<th>Active</th>
-					<th>Created At</th>
-					<th>Updated At</th>
+					<th>Member Since</th>
 					<th>Options</th>
 					<th>Delete</th>
 				</tr>
@@ -39,16 +37,14 @@
 			<tbody>
 				@forelse($customers as $customer)
 				<tr>
-					<td>{{ $customer->id }}</td>
-					<td>{{ $customer->membership_number }}</td>
+					<td align="center"><b>{{ $customer->membership_number }}</b></td>
 					<td>{{ $customer->title }}</td>
 					<td>{{ $customer->first_name }}</td>
 					<td>{{ $customer->last_name }}</td>
 					<td>{{ $customer->email_address }}</td>
 					<td>{{ $customer->address->countries->country_name }}</td>
-					<td>@if($customer->active == 1)Yes @else No @endif</td>
-					<td>{{ $customer->created_at }}</td>
-					<td>{{ $customer->updated_at }}</td>
+					<td align="center"><b>@if($customer->active == 1) <span style="color: green;">Yes</span> @else <span style="color:red;">No</span> @endif</b></td>
+					<td align="center"><b>{{ $customer->created_at->diffForHumans() }}</b></td>
 					<td>
 						<a href="{{ route('manage-customer.show', $customer->id) }}" class="btn btn-success btn-sm btn-block">View</a>
 						<a href="{{ route('manage-customer.edit', $customer->id) }}" class="btn btn-primary btn-sm btn-block">Edit</a>

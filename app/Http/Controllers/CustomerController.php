@@ -80,13 +80,14 @@ class CustomerController extends Controller
 		$customer->save();
 		
 		$customer_address = array(
-			'customer_id' => $customer->id,
+			'customer_id' 	 => $customer->id,
 			'address_line_1' => $request->address_line_1,
 			'address_line_2' => $request->address_line_2, 
 			'address_line_3' => $request->address_line_3, 
 			'city'			 => $request->city,
 			'zip_code'		 => $request->zip_code,
-			'country_id'	 => $request->country_id
+			'country_id'	 => $request->country_id,
+			'updated_at' 	 => date('Y-m-d H:i:s')
 		);	
 		DB::table('customer_addresses')->insert($customer_address);
 		
@@ -110,7 +111,26 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $customer = Customer::find($id);
+        return view('manage-customers.show')->withCustomer($customer);
+    }
+    
+    public function activateCustomer($id)
+    {
+	    $customer = Customer::find($id);
+	    $customer->active = true; 
+	    $customer->save();
+	    
+	    return redirect()->route('manage-customer.show', [$customer->id]);
+    }
+    
+    public function disableCustomer($id)
+    {
+	    $customer = Customer::find($id);
+	    $customer->active = false; 
+	    $customer->save();
+	    
+	    return redirect()->route('manage-customer.show', [$customer->id]);
     }
 
     /**
@@ -142,8 +162,9 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+	 public function destroy($id)
+    {	
+		Session::flash('success', 'Customer Deleted!');
+		return redirect()->route('manage-customer.index');
     }
 }

@@ -8,14 +8,7 @@
        #map {
         height: 400px;
         width: 100%;
-       }
-       
-       ul {
-		-webkit-column-count: 4;
-		-moz-column-count: 4;
-		column-count: 2;
-		list-style-type: none;
-		}
+       } 
 
     </style>
 @endsection

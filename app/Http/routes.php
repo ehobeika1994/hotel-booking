@@ -57,3 +57,6 @@ Route::put('update-address/{hotel_id}/update/{id}', ['uses' => 'AddressControlle
 /** Hotel Active **/
 Route::put('manage-hotels/{hotel_id}/enable', ['uses' => 'ManageHotelsController@enableHotel', 'as' => 'hotel.enable']);
 Route::put('manage-hotels/{hotel_id}/disable', ['uses' => 'ManageHotelsController@disableHotel', 'as' => 'hotel.disable']);
+
+/** Manage Customer **/
+Route::resource('manage-customer', 'CustomerController');

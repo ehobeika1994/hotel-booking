@@ -45,8 +45,12 @@
                 <p><a href="#">System Settings</a></p>-->
                 @if(Auth::check())
 				<p><a href="{{ route('manage-hotels.index') }}">Manage Hotels</a></p>
+				<p><a href="{{ route('manage-customer.index') }}">Manage Customers</a></p>
 				@else
+				<h3>Admin Login</h3>
 				<p><a href="{{ route('user.login') }}">Login</a></p>
+				<h3>Customer Registration</h3>
+				<p><a href="">Register</a></p>
 				@endif
             </div>
 

@@ -17,22 +17,27 @@
 		      <ul class="nav navbar-nav">
 		        <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/">Home</a></li>
 		      </ul>
+		      @if(Auth::check())
 		      <ul class="nav navbar-nav navbar-right">
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">System Settings<span class="caret"></span></a>
+		          
 		          <ul class="dropdown-menu">
 			        
 		            <li><a href="{{ route('manage-hotels.index') }}">Manage Hotels</a></li>
+		            <li><a href="{{ route('manage-customer.index') }}">Manage Customers</a></li>
 		            <li><a href="">View Bookings</a></li>
 		            <li><a href="{{ route('user.logout') }}">Logout</a></li>
 		            <li role="separator" class="divider"></li>
-		            @if(Auth::check())
+		            @else
 		            <li><a href="">Login</a></li>
 		            <li><a href="">Register</a></li>
-		            @endif
+
 		          </ul>
+
 		        </li>
 		      </ul>
+		      		            @endif
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>

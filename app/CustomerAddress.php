@@ -10,7 +10,12 @@ class CustomerAddress extends Model
     public function customers()
     {
 	    return $this->belongsTo('App\Customer');
-    }
+    }	
+    
+    public function customer()
+    {
+	    return $this->belongsTo('App\Customer');
+    }	
     
     public function countries()
     {

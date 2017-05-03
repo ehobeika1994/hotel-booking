@@ -150,6 +150,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Mews\Purifier\PurifierServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Kim\Activity\ActivityServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -208,6 +209,7 @@ return [
 		'Html' => Collective\Html\HtmlFacade::class,
 		'Purifier' => Mews\Purifier\Facades\Purifier::class,
 		'Image' => Intervention\Image\Facades\Image::class,
+		'Activity' => Kim\Activity\ActivityFacade::class,
 
     ],
 

@@ -9,7 +9,9 @@
         height: 400px;
         width: 100%;
        } 
-
+	   .spacing-delete {
+		   margin-top: 5px;
+	   }
     </style>
 @endsection
 
@@ -142,10 +144,9 @@
 				{{ Form::submit('Enable Hotel', ['class' => 'btn btn-primary btn-block form-spacing-top']) }}
 			{!! Form::close() !!}	
 			@endif
-			
-			<!--{!! Form::open(['route' => ['manage-hotels.destroy', $hotel->id], 'method' => 'DELETE']) !!}
-				{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-block form-spacing-top']) }}
-			{!! Form::close() !!}-->
+			{!! Form::open(['route' => ['manage-hotels.destroy', $hotel->id], 'method' => 'DELETE']) !!}
+				{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-block spacing-delete']) }}
+			{!! Form::close() !!}
 		</div>
 		
 		<div class="well">

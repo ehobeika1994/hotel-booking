@@ -27,17 +27,17 @@
 					<th align="center">Adults</th>
 					<th align="center">Children</th>
 					<th align="center">Price</th>
-					<th align="center">Available</th>
+					<th align="center">Availability</th>
 					<th align="center">Options</th>
 				</tr>
 			</thead>
 			
 			<tbody>
-				@forelse($rooms as $room)
+				@forelse($hotel->rooms as $room)
 				<tr>
 					<td align="center">{{ $room->id }}</td>
 					<td align="center"><img src="{{ asset('images/hotel-rooms/' . $room->room_image) }}" width="100" height="75"></td>
-					<td >{{ $room->room_type }}</td>
+					<td>{{ $room->room_type }}</td>
 					<td align="center">{{ $room->adults }}</td>
 					<td align="center">{{ $room->children }}</td>
 					<td align="center">{{ $room->room_price }}</td>

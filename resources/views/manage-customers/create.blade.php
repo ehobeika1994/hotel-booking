@@ -40,6 +40,9 @@
 				<option value="Female">Female</option>
 		</select>
 		
+		{{ Form::label('birthday', 'Birthday:', ['class' => 'form-spacing-top']) }}
+		{{ Form::text('birthday', null, array('class' => 'form-control', 'id' => 'birthday')) }}
+		
 		{{ Form::label('phone_number', 'Phone Number:', ['class' => 'form-spacing-top']) }}
 		{{ Form::text('phone_number', null, array('class' => 'form-control', 'id' => 'phone_number')) }}
 		

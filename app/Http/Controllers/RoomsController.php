@@ -11,6 +11,7 @@ use App\Hotel;
 use App\HotelRoom;
 use Image;
 use Purifier;
+use DB;
 
 class RoomsController extends Controller
 {
@@ -52,7 +53,8 @@ class RoomsController extends Controller
     {
         $this->validate($request, array(
 	       'room_type' => 'required', 
-	       'room_capacity' => 'required',
+	       'adults' => 'required',
+	       'children' => 'required',
 	       'room_price' => 'required', 
 	       'room_facilities' => 'required', 
 	       'room_image' => 'required|image'  
@@ -63,7 +65,8 @@ class RoomsController extends Controller
         
         $room->hotel()->associate($hotel);
         $room->room_type = $request->room_type;
-        $room->room_capacity = $request->room_capacity;
+        $room->adults = $request->adults;
+        $room->children = $request->children;
         $room->room_price = $request->room_price;
         $room->room_facilities = $request->room_facilities;
 		// Save the cover photo as well
@@ -79,6 +82,13 @@ class RoomsController extends Controller
 		}
 		
 		$room->save();
+		
+		$availability = array(
+			'hotel_room_id' => $room->id,
+			'availability' => 0
+		);
+		DB::table('room_availabilities')->insert($availability);
+
 		
 		Session::flash('success', 'You have added a room');
 		

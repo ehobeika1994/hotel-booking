@@ -11,6 +11,7 @@ use Storage;
 use App\Customer;
 use App\CustomerAddress;
 use App\Country;
+use Activity;
 
 class CustomerController extends Controller
 {
@@ -26,9 +27,19 @@ class CustomerController extends Controller
     public function index()
     {
 	    $customers = Customer::orderBy('id', 'asc')->paginate(15);
+	    // Find latest users
+		$activities = Activity::guests()->get(); 
 	    
-        return view('manage-customers.index')->withCustomers($customers);
+        return view('manage-customers.index')->withCustomers($customers)->withActivities($activities);
     }
+    
+    protected function createSession($time = null)
+	{
+		$activity = new Activity;
+		$activity->last_activity = (is_null($time)) ? time() : $time;
+		$activity->save();
+		return $activity;
+	}
 
     /**
      * Show the form for creating a new resource.
@@ -55,6 +66,7 @@ class CustomerController extends Controller
 			'first_name'		=> 'required|max:255', 
 			'last_name'			=> 'required|max:255',
 			'gender'			=> 'required',
+			'birthday'			=> 'required',
 			'phone_number' 		=> 'required',
 			'email_address' 	=> 'required|unique:customers',
 			'password'			=> 'required|min:6|confirmed',
@@ -72,6 +84,7 @@ class CustomerController extends Controller
 		$customer->first_name = $request->first_name;
 		$customer->last_name = $request->last_name;
 		$customer->gender = $request->gender;
+		$customer->birthday = $request->birthday;
 		$customer->phone_number = $request->phone_number;
 		$customer->email_address = $request->email_address;
 		$customer->password = bcrypt($request->password);
@@ -141,7 +154,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = Customer::find($id);
+        return view('manage-customers.edit', [$customer->id])->withCustomer($customer);
     }
 
     /**
@@ -153,7 +167,22 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // validate the data
+        $customer = Customer::find($id);
+       
+		$customer->first_name = $request->first_name;
+		$customer->last_name = $request->last_name;
+		$customer->gender = $request->gender;
+		$customer->birthday = $request->birthday;
+		$customer->phone_number = $request->phone_number;
+		$customer->email_address = $request->email_address;
+		//$hotel->active = $request->has('active') ? true : false; 
+                
+        $customer->save();
+		
+		Session::flash('success', 'You have successfully updated ' . $customer->first_name);
+        // redirect to another page
+		return redirect()->route('manage-customer.show', $customer->id);
     }
 
     /**
@@ -166,5 +195,32 @@ class CustomerController extends Controller
     {	
 		Session::flash('success', 'Customer Deleted!');
 		return redirect()->route('manage-customer.index');
+    }
+    
+    public function editAddress($id)
+    {
+		$customer = Customer::findOrFail($id);
+		
+	    return view('manage-customers.editAddress', [$customer->id])->withCustomer($customer);
+    }
+    
+    public function updateAddress(Request $request, $id, $customer_id)
+    {	
+		$customer = Customer::find($customer_id);
+		$address = CustomerAddress::find($id);
+		
+		$address->customer()->associate($customer);
+		$address->address_line_1 = $request->address_line_1; 
+		$address->address_line_2 = $request->address_line_2; 
+		$address->address_line_3 = $request->address_line_3; 
+		$address->city = $request->city; 
+		$address->zip_code = $request->zip_code; 
+		$address->country_id = $request->country_id; 
+		
+		$address->save();
+		
+		Session::flash('success', 'Successfully update policy!');
+		return redirect()->route('manage-customer.show', [$customer->id]);
+
     }
 }

@@ -25,10 +25,13 @@
 		{{ Form::label('room_type', 'Room Type:') }}
 		{{ Form::text('room_type', null, array('class' => 'form-control', 'id' => 'room_type')) }}
 		
-		{{ Form::label('room_capacity', 'Room Capacity:') }}
-		{{ Form::text('room_capacity', null, array('class' => 'form-control', 'id' => 'room_capacity')) }}
+		{{ Form::label('adults', 'Room Capacity Adult:', ['class' => 'form-spacing-top']) }}
+		{{ Form::text('adults', null, array('class' => 'form-control', 'id' => 'adults')) }}
 		
-		{{ Form::label('room_price', 'Room Price:') }}
+		{{ Form::label('children', 'Room Capacity Children:', ['class' => 'form-spacing-top']) }}
+		{{ Form::text('children', null, array('class' => 'form-control', 'id' => 'adult')) }}
+		
+		{{ Form::label('room_price', 'Room Price:', ['class' => 'form-spacing-top']) }}
 		{{ Form::text('room_price', null, array('class' => 'form-control', 'id' => 'room_price')) }}
 		
 		{{ Form::label('room_facilities', 'Room Facilities:', ['class' => 'form-spacing-top']) }}

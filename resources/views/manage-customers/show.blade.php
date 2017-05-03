@@ -48,6 +48,10 @@
 					<td><b>{{ $customer->gender }}</b></td>
 				</tr>
 				<tr>
+					<td>Birthday:</td>
+					<td><b>{{ $customer->birthday }}</b></td>
+				</tr>
+				<tr>
 					<td>Phone Number:</td>
 					<td><b>{{ $customer->phone_number }}</b></td>
 				</tr>
@@ -111,7 +115,7 @@
 			<a href="{{ route('manage-customer.edit', $customer->id) }}" class="btn btn-primary btn-block">Edit</a>
 			<a href="{{ route('manage-customer.index') }}" class="btn btn-warning btn-block">Go Back</a>
 			<hr>
-			<a href="" class="btn btn-success btn-block">Update Address</a>
+			<a href="{{ route('manage-customer.address', $customer->id) }}" class="btn btn-success btn-block">Update Address</a>
 			<a href="" class="btn btn-success btn-block">View Bookings</a>
 			<a href="" class="btn btn-success btn-block">Create Booking</a>
 			<hr>

@@ -15,7 +15,11 @@
 			<br><small style="font-size: 14px;">There are <b>{{ $customers->total() }}</b> customers found in the system!</small></h1>
 		<p style="color: red;">This section is only used by a super admin to manage customers. I.E. adding new customers to the system, updating customers information, deleting and disabling customers.</p>
 		<a href="{{ route('manage-customer.create') }}" class="btn btn-success btn-block">Add Customer</a>
-
+		
+		@foreach($activities as $activity)
+		
+			<p>{{ $activity->id }}</p>
+		@endforeach
 		<hr>
 		
 		<table class="table">
@@ -25,6 +29,7 @@
 					<th>Title</th>
 					<th>First Name</th>
 					<th>Last Name</th>
+					<th>Birthday</th>
 					<th>Email Address</th>
 					<th>Country</th>
 					<th>Active</th>
@@ -40,6 +45,7 @@
 					<td>{{ $customer->title }}</td>
 					<td>{{ $customer->first_name }}</td>
 					<td>{{ $customer->last_name }}</td>
+					<td>{{ $customer->birthday }}</td>
 					<td>{{ $customer->email_address }}</td>
 					<td>{{ $customer->address->countries->country_name }}</td>
 					<td align="center"><b>@if($customer->active == 1) <span style="color: green;">Yes</span> @else <span style="color:red;">No</span> @endif</b></td>

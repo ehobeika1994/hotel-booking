@@ -23,6 +23,10 @@ class CreateCustomerAddressesTable extends Migration
             $table->integer('country_id')->unsigned();
             $table->timestamps();
         });
+        
+        Schema::table('customer_addresses', function (Blueprint $table) {
+           $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade'); 
+        });
     }
 
     /**
@@ -32,6 +36,7 @@ class CreateCustomerAddressesTable extends Migration
      */
     public function down()
     {
+	    Schema::dropForeign(['customer_id']);
         Schema::drop('customer_addresses');
     }
 }

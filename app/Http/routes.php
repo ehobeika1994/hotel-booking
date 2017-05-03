@@ -61,6 +61,8 @@ Route::put('manage-hotels/{hotel_id}/disable', ['uses' => 'ManageHotelsControlle
 
 /** Manage Customer **/
 Route::resource('manage-customer', 'CustomerController');
+Route::get('manage-customer/{customer_id}/edit-address/', ['uses' => 'CustomerController@editAddress', 'as' => 'manage-customer.address']);
+Route::put('manage-customer/{customer_id}/update/{id}', ['uses' => 'CustomerController@updateAddress', 'as' => 'manage-customer.update.address']);
 
 /** Customers Active **/
 Route::put('manage-customer/{customer_id}/enable', ['uses' => 'CustomerController@activateCustomer', 'as' => 'customer.enable']);

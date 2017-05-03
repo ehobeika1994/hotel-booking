@@ -4,7 +4,12 @@
 
 @section('stylesheets')
 	{!! Html::style('css/styles.css') !!}
-
+	<style>
+		
+		.delete-spacing {
+			margin-top: 5px;
+		}		
+	</style>
 @endsection
 
 @section('content')
@@ -118,7 +123,10 @@
 			{!! Form::open(['route' => ['customer.enable', $customer->id], 'method' => 'PUT']) !!}
 				{{ Form::submit('Activate Customer', ['class' => 'btn btn-primary btn-block form-spacing-top']) }}
 			{!! Form::close() !!}	
-			@endif			
+			@endif	
+			{!! Form::open(['route' => ['manage-customer.destroy', $customer->id], 'method' => 'DELETE']) !!}
+				{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-block delete-spacing']) }}
+			{!! Form::close() !!}		
 		</div>		
 	</div>
 </div>

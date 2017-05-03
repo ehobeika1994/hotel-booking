@@ -23,9 +23,11 @@ class RoomsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($hotel_id)
     {
-        //
+        $rooms = HotelRoom::paginate();
+        $hotel = Hotel::find($hotel_id);
+        return view('manage-hotels.hotel-rooms.index')->withRooms($rooms)->withHotel($hotel);
     }
 
     /**
@@ -35,7 +37,8 @@ class RoomsController extends Controller
      */
     public function create($hotel_id)
     {
-	     $hotel = Hotel::find($hotel_id);
+	    // get hotel ID to associate a room with.
+	    $hotel = Hotel::find($hotel_id);
         return view('manage-hotels.hotel-rooms.create')->withHotel($hotel);
     }
 

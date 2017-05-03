@@ -91,6 +91,7 @@
 					<img src="{{ asset('images/hotel-rooms/' . $room->room_image) }}" alt="rooms">
 						<div class="caption">
 							<h3>{{ $room->room_type }}</h3>
+							<p>You have 100 rooms available</p>
 							<p>Sleeps <b>{{ $room->room_capacity }}</b> people</p>
 							<p>Bed Choice <b>Double Bed</b></p>
 							<p>Starting from <b>${{ $room->room_price }}/night</b></p>
@@ -111,7 +112,16 @@
 	<div class="col-md-4">
 		<div class="well" style="margin-top: 65px;">
 			<h3>Manage Hotels</h3>
-			@if($hotel->active == 1) <span style="color:green;">This hotel is currently enabled for public viewing!</span> @else <span style="color:red;">This hotel is currently disabled from public viewing!</span> @endif
+			@if($hotel->active == 1) <span style="color:green;">This
+			hotel is currently enabled for public viewing!</span> @else <span style="color:red;">This hotel is currently disabled from public viewing!</span> @endif
+			<p>
+				@if($hotel->rooms()->count() == 1 or $hotel->rooms()->count() == 0 ) 
+					There is <b>{{ $hotel->rooms()->count() }}</b> available room at <b>{{ $hotel->hotel_name }}
+				 @else 
+				 	There are <b>{{ $hotel->rooms()->count() }}</b> available rooms at <b>{{ $hotel->hotel_name }}
+				 @endif
+				</b>
+			</p>
 			<hr>
 			<a href="{{ route('manage-hotels.edit', $hotel->id) }}" class="btn btn-primary btn-block">Edit</a>
 			<a href="{{ route('manage-hotels.index') }}" class="btn btn-warning btn-block">Go Back</a>
@@ -120,7 +130,7 @@
 			<a href="{{ route('hotel.rating', $hotel->id) }}" class="btn btn-success btn-block">Hotel Rating</a>
 			<a href="{{ route('hotel.facilities', $hotel->id) }}" class="btn btn-success btn-block">Hotel Facilities</a>
 			<a href="{{ route('manage-hotels.upload-images.index', $hotel->id) }}" class="btn btn-success btn-block">Upload Images</a>
-			<a href="{{ route('hotel.room.create', $hotel->id) }}" class="btn btn-success btn-block">Hotel Rooms</a>
+			<a href="{{ route('hotel.room.index', $hotel->id) }}" class="btn btn-success btn-block">Hotel Rooms</a>
 			<a href="{{ route('hotel.policy.create', $hotel->id) }}" class="btn btn-success btn-block">Hotel Policies</a>
 			<hr>
 			@if($hotel->active == 1)

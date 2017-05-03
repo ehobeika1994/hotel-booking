@@ -16,7 +16,6 @@ class CreateHotelRoomsTable extends Migration
             $table->increments('id');
             $table->integer('hotel_id')->unsigned();
             $table->string('room_type');
-            $table->integer('room_capacity');
             $table->double('room_price', 15, 2);
             $table->text('room_facilities');
             $table->string('room_image');

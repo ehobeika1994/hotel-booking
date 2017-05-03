@@ -10,4 +10,9 @@ class HotelRoom extends Model
 	{
 	    return $this->belongsTo('App\Hotel');
 	}
+	
+	public function availabilities()
+	{
+		return $this->hasOne('App\RoomAvailability');
+	}
 }

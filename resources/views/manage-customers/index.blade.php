@@ -29,8 +29,7 @@
 					<th>Country</th>
 					<th>Active</th>
 					<th>Member Since</th>
-					<th>Options</th>
-					<th>Delete</th>
+					<th></th>
 				</tr>
 			</thead>
 			
@@ -46,13 +45,7 @@
 					<td align="center"><b>@if($customer->active == 1) <span style="color: green;">Yes</span> @else <span style="color:red;">No</span> @endif</b></td>
 					<td align="center"><b>{{ $customer->created_at->diffForHumans() }}</b></td>
 					<td>
-						<a href="{{ route('manage-customer.show', $customer->id) }}" class="btn btn-success btn-sm btn-block">View</a>
-						<a href="{{ route('manage-customer.edit', $customer->id) }}" class="btn btn-primary btn-sm btn-block">Edit</a>
-					</td>
-					<td>
-						{!! Form::open(['route' => ['manage-customer.destroy', $customer->id], 'method' => 'DELETE']) !!}
-							{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm btn-block']) }}
-						{!! Form::close() !!}
+						<a href="{{ route('manage-customer.show', $customer->id) }}" class="btn btn-default btn-sm btn-block">View</a>
 					</td>
 				</tr>
 

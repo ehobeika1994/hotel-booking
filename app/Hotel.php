@@ -26,6 +26,11 @@ class Hotel extends Model
 	    return $this->hasMany('App\HotelRoom');
     }
     
+    public function room()
+    {
+	    return $this->hasOne('App\HotelRoom');
+    }
+    
     public function policies()
     {
 	    return $this->hasOne('App\HotelPolicy');

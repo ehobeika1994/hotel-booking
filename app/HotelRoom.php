@@ -15,4 +15,9 @@ class HotelRoom extends Model
 	{
 		return $this->hasOne('App\RoomAvailability');
 	}
+	
+	public function booking()
+    {
+	   return $this->hasMany('App\Customer');
+    }
 }

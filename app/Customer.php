@@ -12,4 +12,9 @@ class Customer extends Model
 	  return $this->hasOne('App\CustomerAddress');	
     }
     
+    public function booking()
+    {
+	    return $this->hasMany('App\Bookings');
+    }
+    
 }

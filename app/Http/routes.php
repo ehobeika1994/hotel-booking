@@ -67,3 +67,6 @@ Route::put('manage-customer/{customer_id}/update/{id}', ['uses' => 'CustomerCont
 /** Customers Active **/
 Route::put('manage-customer/{customer_id}/enable', ['uses' => 'CustomerController@activateCustomer', 'as' => 'customer.enable']);
 Route::put('manage-customer/{customer_id}/disable', ['uses' => 'CustomerController@disableCustomer', 'as' => 'customer.disable']);
+
+/** Manage Bookings **/
+Route::resource('manage-bookings', 'BookingController');

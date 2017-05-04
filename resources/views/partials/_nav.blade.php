@@ -25,8 +25,9 @@
 		          <ul class="dropdown-menu">
 			        
 		            <li><a href="{{ route('manage-hotels.index') }}">Manage Hotels</a></li>
-		            <li><a href="{{ route('manage-customer.index') }}">Manage Customers</a></li>
-		            <li><a href="">View Bookings</a></li>
+		            <li><a href="{{ route('manage-customer.index') }}">Manage Customer Accounts</a></li>
+		            <li><a href="{{ route('manage-bookings.index') }}">Mange Bookings</a></li>
+		            <li><a href="">System Settings</a></li>
 		            <li><a href="{{ route('user.logout') }}">Logout</a></li>
 		            <li role="separator" class="divider"></li>
 		            @else

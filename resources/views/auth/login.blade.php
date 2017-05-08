@@ -39,6 +39,7 @@
         <div class="container">
            <div class="content">
                 <div class="title">Gambia Beds</div>
+                <p>Administrator Login</p>
 				<!--<p><a href="{{ route('manage-hotels.index') }}">Manage Hotels</a></p>
                 <p><a href="#">Manage Bookings</a></p>
                 <p><a href="#">Manage Customer Accounts</a></p>

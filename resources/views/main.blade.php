@@ -10,7 +10,9 @@
 		<div class="container">
 			@include('partials._messages')
 			
- 			{{ Auth::check() ? "Logged In as" : "Logged Out" }} <b>{{ Auth::user()->name }}</b>
+ 			<p>{{ Auth::check() ? "Logged In as" : "Logged Out" }} <b>{{ Auth::user()->name }}</b></p>
+ 			<p>Last Login at <b>{{ Auth::user()->updated_at }}</b></p>
+ 			<p> {{ Session::get('id') }}</p>
 
  					
 			@yield('content')

@@ -18,6 +18,6 @@ class HotelRoom extends Model
 	
 	public function booking()
     {
-	   return $this->hasMany('App\Customer');
+	   return $this->belongsTo('App\Customer');
     }
 }

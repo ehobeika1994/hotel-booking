@@ -39,6 +39,7 @@
         <div class="container">
            <div class="content">
                 <div class="title">Gambia Beds</div>
+                <p class="lead">Administrator Login</p>
                 @if(Auth::check())
 				<p><a href="{{ route('manage-hotels.index') }}">Manage Hotels</a></p>
 				<p><a href="{{ route('manage-customer.index') }}">Manage Customer Accounts</a></p>

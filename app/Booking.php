@@ -18,6 +18,6 @@ class Booking extends Model
     
     public function room()
     {
-	    return $this->hasOne('App\HotelRoom');
+	    return $this->belongsTo('App\HotelRoom', 'hotel_room_id');
     }
 }

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Booking;
+use App\HotelRoom;
+use App\Customer;
+use DB;
 
 class BookingController extends Controller
 {
@@ -16,7 +19,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::all();
+        $bookings = Booking::paginate(10);
         return view('manage-bookings.index')->withBookings($bookings);
     }
 
@@ -27,7 +30,9 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+	    $customers = Customer::all();
+	    $rooms = HotelRoom::all();
+        return view('manage-bookings.create')->withCustomers($customers)->withRooms($rooms);
     }
 
     /**
@@ -49,7 +54,10 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        $booking = Booking::find($id);
+        
+        
+        return view('manage-bookings.show')->withBooking($booking);
     }
 
     /**
@@ -85,4 +93,23 @@ class BookingController extends Controller
     {
         //
     }
+    
+    public function activateBooking($id)
+    {
+	    $booking = Booking::find($id);
+	    $booking->active_booking = true; 
+	    $booking->save();
+	    
+	    return redirect()->route('manage-bookings.show', [$booking->id]);
+    }
+    
+    public function disableBooking($id)
+    {
+	    $booking = Booking::find($id);
+	    $booking->active_booking = false; 
+	    $booking->save();
+	    
+	    return redirect()->route('manage-bookings.show', [$booking->id]);
+    }
+
 }

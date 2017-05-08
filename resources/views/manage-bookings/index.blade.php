@@ -12,22 +12,19 @@
 <div class="row">
 	<div class="col-md-12">
 		<h1>Manage Bookings 
-			<br><small style="font-size: 14px;">There are <b>0</b> bookings found in the system!</small></h1>
+			<br><small style="font-size: 14px;">There are <b>{{ $bookings->count() }}</b> bookings found in the system!</small></h1>
 		<p style="color: red;">This section is only used by a super admin to manage bookings. I.E. adding new bookings to the system, updating bookings information, cancelling bookings.</p>
 		<a href="{{ route('manage-bookings.create') }}" class="btn btn-success btn-block">Create Bookings</a>
 		<hr>
 		
-		<table class="table">
+		<table class="table table-striped table-bordered">
 			<thead style="color:blue;">
 				<tr>
-					<th>ID.</th>
 					<th>Booking Number</th>
-					<th>Booked By</th>
-					<th>First Name</th>
 					<th>Last Name</th>
-					<th>Email</th>
-					<!--<th>Room Type</th>
-					<th>Room Price</th>-->
+					<th>Room Type</th>
+					<th>Room Price</th>
+					<th>Hotel Name</th>
 					<th>From Date</th>
 					<th>Till Date</th>
 					<th>Active</th>
@@ -38,15 +35,14 @@
 			<tbody>
 				@forelse($bookings as $booking)
 				<tr>
-					<td align="center"><b>{{ $booking->id }}</b></td>
-					<td>{{ $booking->booking_number }}</td>
-					<td>{{ $booking->user->name }}</td>
-					<td>{{ $booking->customer->first_name }}</td>
-					<td>{{ $booking->customer->last_name }}</td>
-					<td>{{ $booking->customer->email_address }}</td>
+					<td><b>{{ $booking->booking_number }}</b></td>
+					<td>{{ $booking->customer->last_name }}</td>					
+					<td>{{ $booking->room->room_type }}</td>
+					<td align="center"><b>£ {{ $booking->room_price }}</b></td>
+					<td>{{ $booking->room->hotel->hotel_name }}</td>
 					<td>{{ $booking->from_date }}</td>
 					<td>{{ $booking->till_date }}</td>
-					<td align="center"><b>@if($booking->active_booking == 1) <span style="color: green;">Yes</span> @else <span style="color:red;">No</span> @endif</b></td>
+					<td align="center"><b>@if($booking->active_booking == 1) Active @else Expired @endif</b></td>
 					<td>
 						<a href="{{ route('manage-bookings.show', $booking->id) }}" class="btn btn-default btn-sm btn-block">View</a>
 					</td>
@@ -58,7 +54,7 @@
 			</tbody>
 		</table> 
 		<div class="text-center">
-
+			{!! $bookings->links() !!}
 		</div>
 		
 	</div>

@@ -70,3 +70,5 @@ Route::put('manage-customer/{customer_id}/disable', ['uses' => 'CustomerControll
 
 /** Manage Bookings **/
 Route::resource('manage-bookings', 'BookingController');
+Route::put('manage-bookings/{booking_id}/enable', ['uses' => 'BookingController@activateBooking', 'as' => 'booking.enable']);
+Route::put('manage-bookings/{booking_id}/disable', ['uses' => 'BookingController@disableBooking', 'as' => 'booking.disable']);

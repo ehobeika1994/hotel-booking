@@ -18,17 +18,15 @@
 
 		<hr>
 		
-		<table class="table">
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th align="center">ID</th>
-					<th align="center"></th>
 					<th align="center">Type</th>
 					<th align="center">Adults</th>
 					<th align="center">Children</th>
 					<th align="center">Price</th>
 					<th align="center">Availability</th>
-					<th align="center">Options</th>
 				</tr>
 			</thead>
 			
@@ -36,15 +34,11 @@
 				@forelse($hotel->rooms as $room)
 				<tr>
 					<td align="center">{{ $room->id }}</td>
-					<td align="center"><img src="{{ asset('images/hotel-rooms/' . $room->room_image) }}" width="100" height="75"></td>
 					<td>{{ $room->room_type }}</td>
-					<td align="center">{{ $room->adults }}</td>
-					<td align="center">{{ $room->children }}</td>
-					<td align="center">{{ $room->room_price }}</td>
-					<td align="center">{{ $room->availabilities->availability }}</td>
-					<td>
-						<a href="" class="btn btn-success btn-sm btn-block">View</a>
-					</td>
+					<td>{{ $room->adults }}</td>
+					<td>{{ $room->children }}</td>
+					<td>£ {{ $room->room_price }}</td>
+					<td>{{ $room->availabilities->availability }}</td>
 				</tr>
 
 				@empty

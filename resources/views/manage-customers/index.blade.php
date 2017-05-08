@@ -22,7 +22,7 @@
 		@endforeach
 		<hr>
 		
-		<table class="table">
+		<table class="table table-striped">
 			<thead style="color:blue;">
 				<tr>
 					<th>Membership No.</th>

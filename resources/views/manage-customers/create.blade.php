@@ -51,9 +51,7 @@
 		
 		{{ Form::label('password', 'Password:', ['class' => 'form-spacing-top']) }}
 		{{ Form::password('password', array('class' => 'form-control', 'id' => 'password')) }}
-		
-		{{ Form::label('password_confirmation', 'Password Confirmation:', ['class' => 'form-spacing-top']) }}
-		{{ Form::password('password_confirmation', array('class' => 'form-control', 'id' => 'password_confirmation')) }}
+		<button onclick="generateRandomPassword()" type="button" class="form-spacing-top btn btn-warning btn-block">Generate Password</button>
 		
 		<hr class="form-spacing-top">
 		
@@ -87,5 +85,15 @@
 @endsection
 
 @section('scripts')
+
+<script>
+	// Generate Password !ONLY FOR ADMIN PURPOSES! 
+	function generateRandomPassword()
+	{
+		var password = document.getElementById("password");
+		password.value = Math.random().toString(36).slice(-8);
+	}
+	
+</script>
 
 @endsection

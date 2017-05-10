@@ -22,13 +22,12 @@
 		@endforeach
 		<hr>
 		
-		<table class="table table-striped">
-			<thead style="color:blue;">
+		<table class="table table-striped table-bordered">
+			<thead>
 				<tr>
 					<th>Membership No.</th>
-					<th>Title</th>
-					<th>First Name</th>
 					<th>Last Name</th>
+					<th>First Name</th>
 					<th>Birthday</th>
 					<th>Email Address</th>
 					<th>Country</th>
@@ -42,12 +41,11 @@
 				@forelse($customers as $customer)
 				<tr>
 					<td align="center"><b>{{ $customer->membership_number }}</b></td>
-					<td>{{ $customer->title }}</td>
-					<td>{{ $customer->first_name }}</td>
 					<td>{{ $customer->last_name }}</td>
+					<td>{{ $customer->first_name }}</td>
 					<td>{{ $customer->birthday }}</td>
 					<td>{{ $customer->email_address }}</td>
-					<td>{{ $customer->address->countries->country_name }}</td>
+					<td align="center">{{ $customer->address->countries->country_name }}</td>
 					<td align="center"><b>@if($customer->active == 1) <span style="color: green;">Yes</span> @else <span style="color:red;">No</span> @endif</b></td>
 					<td align="center"><b>{{ $customer->created_at->diffForHumans() }}</b></td>
 					<td>

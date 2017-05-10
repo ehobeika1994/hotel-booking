@@ -9,6 +9,7 @@ use App\Booking;
 use App\HotelRoom;
 use App\Customer;
 use DB;
+use Carbon\Carbon;
 
 class BookingController extends Controller
 {
@@ -56,8 +57,13 @@ class BookingController extends Controller
     {
         $booking = Booking::find($id);
         
+        $from = Carbon::parse($booking->from_date);
+        $to = Carbon::parse($booking->till_date);
+        $len = $to->diffInDays($from);
         
-        return view('manage-bookings.show')->withBooking($booking);
+        $total = ($booking->room_price * $len);
+        
+        return view('manage-bookings.show')->withBooking($booking)->withLength($len)->withTotal($total);
     }
 
     /**

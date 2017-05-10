@@ -22,6 +22,7 @@
     
     {{ Form::label('customer_id', 'Customer:', ['class' => 'form-spacing-top']) }}
 		<select class="form-control" name="customer_id">
+					<option>-- Select Customer --</option>
 				@foreach($customers as $customer)
 					<option value="{{ $customer->id }}">{{ $customer->first_name }} {{ $customer->last_name }}</option>
 				@endforeach
@@ -29,6 +30,7 @@
 			
 			{{ Form::label('hotel_room_id', 'Rooms:', ['class' => 'form-spacing-top']) }}
 			<select class="form-control" name="hotel_room_id">
+				<option>-- Select Room --</option>
 				@foreach($rooms as $room)
 					<option value="{{ $room->id }}">{{ $room->room_type }} ({{ $room->hotel->hotel_name }})</option>
 				@endforeach
@@ -59,7 +61,7 @@
 			</select>
 		
 			{{ Form::label('room_price', 'Room Price:', ['class' => 'form-spacing-top']) }}
-			{{ Form::text('room_price', 0, array('class' => 'form-control', 'readonly'))}}
+			{{ Form::text('room_price', 0, array('class' => 'form-control', 'readonly', 'id' => 'room_price'))}}
 		
 
 		
@@ -72,5 +74,20 @@
 @endsection
 
 @section('scripts')
-
+<script>
+	$(function()
+	{
+		$.ajax({
+			url: '/manage-customer',
+			data: "",
+			dataType: 'json',
+			success: function(data)
+			{
+				var id = data[0];
+				var price = data[1];
+				$('#room_price').html(price);
+			}
+		});
+	});
+</script>
 @endsection

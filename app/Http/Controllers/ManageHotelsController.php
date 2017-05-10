@@ -29,7 +29,7 @@ class ManageHotelsController extends Controller
      */
     public function index()
     {
-	    $hotels = Hotel::orderBy('hotel_name', 'asc')->paginate(8);
+	    $hotels = Hotel::orderBy('hotel_name', 'asc')->paginate(15);
 
         return view('manage-hotels.index')->withHotels($hotels);
     }

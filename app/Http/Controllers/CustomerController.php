@@ -26,7 +26,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-	    $customers = Customer::orderBy('id', 'asc')->paginate(15);
+	    $customers = Customer::orderBy('last_name', 'asc')->paginate(25);
 	    // Find latest users
 		$activities = Activity::guests()->get(); 
 	    
@@ -69,11 +69,11 @@ class CustomerController extends Controller
 			'birthday'			=> 'required',
 			'phone_number' 		=> 'required',
 			'email_address' 	=> 'required|unique:customers',
-			'password'			=> 'required|min:6|confirmed',
-			'password_confirmation' => 'required|min:6', 
+			'password'			=> 'required|min:6',
 			'address_line_1'	=> 'required|max:255', 
 			'city'				=> 'required|max:255',
-			'zip_code'	 		=>	'required|max:255'
+			'zip_code'	 		=>	'required|max:255',
+			'country_id'		=> 'required'
 		));
 		
 		//store new customers

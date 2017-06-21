@@ -210,7 +210,8 @@ return [
 		'Purifier' => Mews\Purifier\Facades\Purifier::class,
 		'Image' => Intervention\Image\Facades\Image::class,
 		'Activity' => Kim\Activity\ActivityFacade::class,
-
+		'Input' => Illuminate\Support\Facades\Input::class,
+		'HotelRoom' => App\HotelRoom::class,
     ],
 
 ];

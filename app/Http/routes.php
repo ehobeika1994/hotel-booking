@@ -72,3 +72,18 @@ Route::put('manage-customer/{customer_id}/disable', ['uses' => 'CustomerControll
 Route::resource('manage-bookings', 'BookingController');
 Route::put('manage-bookings/{booking_id}/enable', ['uses' => 'BookingController@activateBooking', 'as' => 'booking.enable']);
 Route::put('manage-bookings/{booking_id}/disable', ['uses' => 'BookingController@disableBooking', 'as' => 'booking.disable']);
+
+
+/** API's for booking rooms using ajax and JSON response **/
+
+Route::get('/hotel-room-sub', function(){
+	$hotel_id = Input::get('hotel_id');
+	$rooms = HotelRoom::where('hotel_id', '=', $hotel_id)->get();
+    return Response::json($rooms);
+});
+
+Route::get('/room-sub', function(){
+	$room_id = Input::get('room_id');
+	$output = HotelRoom::where('id', '=', $room_id)->get();
+	return Response::json($output);
+});

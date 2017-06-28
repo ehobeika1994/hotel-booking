@@ -49,7 +49,7 @@
 				</tr>
 				<tr>
 					<td>Birthday:</td>
-					<td><b>{{ $customer->birthday }}</b></td>
+					<td><b>{{ Carbon\Carbon::parse($customer->birthday)->format('d M Y') }}</b></td>
 				</tr>
 				<tr>
 					<td>Phone Number:</td>

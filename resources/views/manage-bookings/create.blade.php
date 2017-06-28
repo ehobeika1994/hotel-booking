@@ -14,8 +14,8 @@
 		<h1>Create a new booking</h1>
 		<ol class="breadcrumb">
 			<li><a href="/">Administrator</a></li>
-			<li><a href="{{ route('manage-bookings.index') }}">Manage Bookings</a></li>
-			<li class="active">Add New Booking</li>
+			<li><a href="{{ route('manage-bookings.index') }}">Bookings</a></li>
+			<li class="active">Create A New Booking</li>
 		</ol>
 		<hr>
 		{!! Form::open(array('route' => 'manage-bookings.store')) !!}
@@ -25,7 +25,7 @@
 	        <div class='col-sm-6'>
 	            <div class="form-group">
 	                <div class='input-group date'>
-	                    <input type='text' class="form-control from_date" name="from_date" id='from_date' />
+	                    <input type='text' class="form-control from_date" name="from_date" id='from_date' placeholder="{{ Carbon\Carbon::now()->format('d-m-Y')  }}" />
 	                    <span class="input-group-addon">
 	                        <span class="glyphicon glyphicon-calendar"></span>
 	                    </span>
@@ -36,7 +36,7 @@
 	        <div class='col-sm-6'>
 	            <div class="form-group">
 	                <div class='input-group date'>
-	                    <input type='text' class="form-control till_date" id="till_date" name="till_date" />
+	                    <input type='text' class="form-control till_date" id="till_date" name="till_date" placeholder=" {{ Carbon\Carbon::now()->format('d-m-Y') }} "/>
 	                    <span class="input-group-addon">
 	                        <span class="glyphicon glyphicon-calendar"></span>
 	                    </span>
@@ -70,7 +70,6 @@
 		{{ Form::label('number_of_rooms', 'No Of Rooms:', ['class' => 'form-spacing-top']) }}
 			<select class="form-control" name="number_of_rooms">
 					<option value="1">1</option>
-					<option value="2">2</option>
 			</select>
 			
 			{{ Form::label('number_of_adults', 'No Of Adults:', ['class' => 'form-spacing-top']) }}
@@ -83,6 +82,9 @@
 			<select class="form-control" name="number_of_children">
 					<option value="1">1</option>
 					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
 			</select>
 		
 			{{ Form::label('room_price', 'Room Price:', ['class' => 'form-spacing-top']) }}
@@ -101,6 +103,8 @@
 
 @section('scripts')
 <script type="text/javascript">
+
+var dateToday = new Date();
 
 $("#from_date").datepicker({ dateFormat: 'yy-mm-dd' }); 
 	$("#till_date").datepicker({

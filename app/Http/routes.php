@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/auth', function () {
     return view('welcome');
 });
+
+Route::get('/admin/dashboard', ['uses' => 'BookingController@dashboard']);
 
 /** Authentication Routes **/
 Route::get('auth/login', ['uses' => 'Auth\AuthController@getLogin', 'as' => 'user.login']);
@@ -87,3 +89,15 @@ Route::get('/room-sub', function(){
 	$output = HotelRoom::where('id', '=', $room_id)->get();
 	return Response::json($output);
 });
+
+
+/** Client View **/
+Route::get('/', ['uses' => 'HomeController@homePage']);
+Route::post('/search', ['uses' => 'HomeController@searchHotels', 'as' => 'search.hotel']);
+
+Route::get('/hotels', function(){
+	$output = Hotel::all();
+	return Response::json($output);
+});
+
+

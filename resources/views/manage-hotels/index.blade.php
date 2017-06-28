@@ -11,10 +11,10 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<h1>Manage hotel 
+		<h1>Hotels
 			<br><small style="font-size: 14px;">There are <b>{{ $hotels->total() }}</b> hotels found in the system!</small></h1>
 		<p style="color: red;">This section is only used by a super admin to manage hotels. I.E. adding new hotels to the system, updating hotels, deleting hotels. This section also allows the super admin to add images to hotels.</p>
-		<a href="{{ route('manage-hotels.create') }}" class="btn btn-success btn-block">Add Hotel</a>
+		<a href="{{ route('manage-hotels.create') }}" class="btn btn-success btn-block">Add A New Hotel</a>
 
 		<hr>
 		

@@ -16,6 +16,13 @@ use Session;
 
 class BookingController extends Controller
 {
+	public function dashboard()
+    {
+	    $bookings = Booking::where('active_booking','=','1')->count();
+	    $inactive = Booking::where('active_booking','=','0')->count();
+	    $hotels = Hotel::all();
+        return view('dashboard')->withBookings($bookings)->withHotels($hotels)->withInactive($inactive);
+    }
     /**
      * Display a listing of the resource.
      *

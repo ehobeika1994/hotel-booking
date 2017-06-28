@@ -212,6 +212,7 @@ return [
 		'Activity' => Kim\Activity\ActivityFacade::class,
 		'Input' => Illuminate\Support\Facades\Input::class,
 		'HotelRoom' => App\HotelRoom::class,
+		'Hotel' => App\Hotel::class,
     ],
 
 ];

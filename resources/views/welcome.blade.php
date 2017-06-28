@@ -41,15 +41,12 @@
                 <div class="title">Gambia Beds</div>
                 <p class="lead">Administrator Login</p>
                 @if(Auth::check())
-				<p><a href="{{ route('manage-hotels.index') }}">Manage Hotels</a></p>
-				<p><a href="{{ route('manage-customer.index') }}">Manage Customer Accounts</a></p>
-				<p><a href="{{ route('manage-bookings.index') }}">Manage Bookings</a></p>
-                <p><a href="#">System Settings</a></p>
+				<script type="text/javascript">
+				    window.location = "{{ url('/admin/dashboard') }}";//here double curly bracket
+				</script>
 				@else
 				<h3>Admin Login</h3>
 				<p><a href="{{ route('user.login') }}">Login</a></p>
-				<h3>Customer Registration</h3>
-				<p><a href="">Register</a></p>
 				@endif
             </div>
 

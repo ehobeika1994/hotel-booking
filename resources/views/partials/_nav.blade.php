@@ -1,5 +1,5 @@
  <!-- Default Bootstrap NavBar -->
-	  	<nav class="navbar navbar-default">
+	  	<nav class="navbar navbar-default" style="background-color: #EBA333;">
 		  <div class="container">
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
@@ -16,7 +16,10 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		        <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/">Dashboard</a></li>
+		        <li class="{{ Request::is('/dashboard') ? 'active' : '' }}"><a href="{{ url('/admin/dashboard') }}">Administrator</a></li>
+		        <li class="{{ Request::is('/manage-hotels') ? 'active' : '' }}"><a href="{{ route('manage-hotels.index') }}">Hotels</a></li>
+		        <li class="{{ Request::is('/manage-customer') ? 'active' : '' }}"><a href="{{ route('manage-customer.index') }}">Customers</a></li>
+		        <li class="{{ Request::is('/manage-bookings') ? 'active' : '' }}"><a href="{{ route('manage-bookings.index') }}">Bookings</a></li>
 		      </ul>
 		      
 		      <ul class="nav navbar-nav navbar-right">
@@ -24,11 +27,9 @@
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">System Settings<span class="caret"></span></a>
 		          
 		          <ul class="dropdown-menu">
-			        
-		            <li><a href="{{ route('manage-hotels.index') }}">Manage Hotels</a></li>
-		            <li><a href="{{ route('manage-customer.index') }}">Manage Customer Accounts</a></li>
-		            <li><a href="{{ route('manage-bookings.index') }}">Mange Bookings</a></li>
+		            <li role="separator" class="divider"></li>
 		            <li><a href="">System Settings</a></li>
+					<li role="separator" class="divider"></li>
 		            <li><a href="{{ route('user.logout') }}">Logout</a></li>
 		            <li role="separator" class="divider"></li>
 		            @else

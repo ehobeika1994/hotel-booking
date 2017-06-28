@@ -1,0 +1,16 @@
+#update ul {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+#update ul li {
+width: 100%;
+padding: 2px;
+background: white;
+color: black;
+padding-bottom: 5px;
+overflow: hidden;
+border-bottom: 1px dotted #CCC;
+
+}
